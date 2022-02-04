@@ -1,0 +1,381 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in,paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts} % \mathbb
+\usepackage{mathrsfs} % \mathscr
+\usepackage{graphicx} % \includegraphics
+\usepackage{fancyhdr} % \cfoot
+\usepackage{multicol}
+\usepackage[many]{tcolorbox}
+
+\renewcommand{\mod}{$mod $}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\begin{document}
+
+\begin{center}
+
+$
+\begin{matrix}
+\text{Abstract Algebra, 4th edition by Beachy and Blair}\\
+\text{\textit{Abstract Algebra} YouTube playlist by Socratica}
+\end{matrix}
+$
+
+\end{center}
+
+\section{Integers}
+
+\subsection{Divisors}
+
+$ a\mathbb{Z}$ denotes all the integer $(\pm)$ multiples of $a$.
+
+Every set of integers that is bounded below contains a least element. (Corollary of the Well-Ordering Principle of $\mathbb{N}$.)
+
+The division algorithm states that for any integers $a$ and $b$ with $b > 0$, there exist unique integers $q$ (the \textit{quotient}) and $r$ (the remainder) such that $a = bq + r$ with $ 0 \leq r < b$. (Where the remainder $r = 0$, we say $b | a$ meaning $b$ \textit{divides} $a$ or $b$ \textit{is a divisor of} $a$.)
+
+Let $I$ be a nonempty set of integers closed under addition and subtraction. The $I = {0}$ or $I$ contains some smallest positive element, in which case $I$ consists of all multiples of that smallest positive element.
+
+\textbf{Definition:} greatest common divisor: let $a$ and $b$ both be integers where at least one of $a$ and $b$ is not zero. A positive integer $d$ is called the greatest common divisor of $a$ and $b$ if 1. $d|a$ and $d|b$ ($d$ divides both $a$ and $b$), and 2. $c|a$ and $c|b$ implies $c|d$ (any divisor of $a$ and $b$ is also a divisor of $d$).
+
+The greatest common divisor of $a$ and $b$ is written $gcd(a, b)$ or simply $(a, b)$.
+
+$\gcd(0,0)$ is undefined, but $\gcd(a,0)=|a|$.
+
+\textbf{Theorem:} the gcd is unique. (Suppose there are two gcds, then apply part 2 of the definition).
+
+\textbf{Theorem:} $\gcd(a,b) = ma + nb$ for $m, n \in \mathbb{Z}$. (The greatest common divisor of $a$ and $b$ can be written as a linear combination of $a$ and $b$. Remember that $m$ and $n$ can be negative!)
+
+\textbf{Corollary:} the set of all linear combinations of $a$ and $b$ is equal to $d\mathbb{Z}$.
+
+$\gcd(a,b) = \gcd(|a|,|b|)$.
+
+If $b>0$ and $b|a$, then $\gcd(a,b)=b$.
+
+$a = bq + r$ implies $\gcd(a, b) = \gcd(b, r)$ for $b \neq 0$.
+
+\textbf{The Euclidean Algorithm}
+
+$\gcd(a,b) = \gcd(b,r_{1})$
+
+if $r_{n+1} = 0$, then $r_{n}=\gcd(a,b)$. 
+
+\subsection{Primes}
+
+Two numbers $a$ and $b$ are called \textit{relatively prime} if $\gcd(a,b) = 1$.
+
+\textbf{Proposition.} Let $a, b$ be nonzero integers. Then $(a,b)=1$ if and only if there exist integers $m,n$ such that $ma+nb = 1$. 
+
+\textbf{Proposition.} Let $a, b, c$ be integers where $a \neq 0$ or $b \neq 0$.
+
+a) if $b|ac$, then $b | (a,c) \cdot c$
+
+b) if $b|ac$, and $(a,b) = 1$, then $b|c$
+
+c) if $b|a$, $c | a$ and $(b,c) = 1$ then $bc|a$
+
+d) $(a,bc) = 1$ if and only if $(a,b) = 1$ and $(a,c) = 1$
+
+\textbf{Lemma (Euclid)} An integer $p > 1$ is prime if and only if for all integers $a$ and $b$, if $p|ab$, then either $p|a$ or $p|b$. (This is true only if $p$ prime; consider the case $6 |2 \cdot 3$)
+
+\subsection{Congruences}
+
+\textbf{Definition.} Let $n$ be a positive integer. Integers $a$ and $b$ are said to be \textit{congruent modulo n} \textbf{if they have the same remainder when divided by $n$,} denoted $a \equiv b (\mod n)$. In other words, $a \equiv b (\mod n) \Leftrightarrow a \% n = b \% n$
+
+Let $a$, $b$, and $n \neq 0$ be integers. Then $a \equiv b (\mod n)$ if and only if $n|(a-b)$. In other words, if both $a$ and $b$ have the same remainder $\mod n$, then they must differ by a multiple of $n$.
+
+\textbf{Proposition} Let $n > 0$ be an integer. Then the following conditions hold for integers $a, b, c, d$:
+
+a) if $a \equiv c (\mod n)$ and $b \equiv d (\mod n)$, then $a \pm b \equiv b \pm d (\mod n)$ and $ab \equiv cd (\mod n)$
+
+b) if $a + c \equiv a + d (\mod n)$ then $c \equiv d (\mod n)$. If $ac \equiv ad (\mod n)$ and $(a,n) = 1$, then $c \equiv d (\mod n)$.
+
+\textbf{Proof}
+
+If $a \equiv c(\mod n)$ and $b \equiv d(\mod n)$, then $n|(a-c)$ and $n|(b-d)$. Adding shows that $n|((a+b)-(c+d))$, and subtracting shows that $n|((a-b)-(c-d))$. So, $a \pm b \equiv c \pm d (\mod n)$. $\square$
+
+Since $n|(a-c)$, we have $n|(ab-cb)$, and then since $n|(b-d)$, we must have $n|(cb-cd)$. Adding shows that $n|(ab-cd)$ and thus $ab \equiv cd(\mod n)$. $\square$
+
+If $ac \equiv ad (\mod n)$, then $n|(ac-ad)$, and since $(n,a)=1$, it follows from the previous proposition (the four-part one) that $n|(c-d)$. Thus $c \equiv d(\mod n)$. $\square$
+
+\textbf{Consequences}
+
+1) For any number in the congruence, you can substitute any congruent integer.
+
+2) You can add or subtract the same integer on both sides of a congruence.
+
+3) You can multiply both sides of a congruence by the same integer.
+
+4) You can divide both sides of a congruence by an integer $a$ only if $(a,n) = 1$.
+
+Let $a$ and $n > 1$ be integers. There exists an integer $b$ such that $ab \equiv 1 (\mod n)$ if and only if $(a,n) = 1$.
+
+\textbf{Theorem.} Let $a$, $b$, and $n > 1$ be integers. The congruence $ax \equiv b (\mod n)$ has a solution if and only if $b$ is divisible by $d$, where $d = (a,n)$. If $d|b$, then there are $d$ distinct solutions modulo $n$, and these solutions are congruent modulo $n/d$.
+
+\textbf{Algorithm}
+
+First compute $d = (a,n)$. If $d | b$, we write $ax \equiv b(\mod n)$ as $ax = b + qn$. Since $d$ is a common divisor of $a$, $b$, and $n$, we can write $a = da_{1}$, $b = db_{1}$, and $n = dm$. Thus we get $a_{1}x = b_{1}+qm$, which yields the congruence $a_{1}x \equiv b_{1}(\mod m)$, where $a_{1} = a/d$, $b_{1} = b/d$, and $m = n/d$.
+Since $d = (a,n)$, the numbers $a_{1}$ and $m$ must be relatively prime. Thus... (p. 31)
+
+\textbf{Chinese Remainder Theorem} Let $n$ and $m$ be positive integers, with $(n,m) = 1$. Then the system of congruences
+
+$$
+\begin{matrix}
+x \equiv a(\mod n)\\
+x \equiv b(\mod m)\\
+\end{matrix}
+$$
+
+has a solution. Moreover, any two solutions are congruent modulo $mn$.
+
+If $ma + nb = c$, then $ma \equiv c (\mod n)$ and $nb \equiv c (\mod m)$.
+
+\subsection{Integers Modulo N}
+
+\textbf{Definition.} \textbf{The congruence class of \textit{a} modulo \textit{n}} (denoted $[a]_{n}$) is the set of all integers which have the same remainder as $a$ when divided by $n$ (for $a, n \in \Z$ and $n > 0$). $[a]_{n} = \{ x \in \mathbb{Z} \, | \, x \equiv a (\mod n)\}$.
+
+Note: the product of two nonzero congruence classes can equal zero.
+
+\textbf{Definition.} \textbf{The set of integers modulo \textit{n}} (denoted $\mathbb{Z}_{n}$) is the collection of all congruence classes modulo $n$ and is equal to $\{[0]_{n},[1]_{n},\ldots,[n-1]_{n}\}$. For example, where $n = 2$, the set $\mathbb{Z}_{2}$ consists of the sets $[0]_{2}$ (the even integers) and $[1]_{2}$ (the odd integers).
+
+We can use this notation to express the following rules:
+
+\begin{tabular}{c|cc}
+
+$+$       & $[0]_{2}$ & $[1]_{2}$ \\ \hline
+$[0]_{2}$ & $[0]_{2}$ & $[1]_{2}$ \\
+$[1]_{2}$ & $[1]_{2}$ & $[0]_{2}$ \\
+
+\end{tabular}
+
+\begin{tabular}{c|cc}
+
+$\times$     & $[0]_{2}$ & $[1]_{2}$ \\ \hline
+$[0]_{2}$    & $[0]_{2}$ & $[0]_{2}$ \\
+$[1]_{2}$    & $[0]_{2}$ & $[1]_{2}$ \\
+
+\end{tabular}
+
+More broadly, we can express addition and multiplication in $\mathbb{Z}_{n}$ as:
+
+\begin{center}
+
+$[a]_{n} + [b]_{n} = [a + b]_{n}$
+
+$[a]_{n} \cdot [b]_{n} = [a \cdot b]_{n}$
+
+\end{center}
+
+For example $[8]_{12} = [20]_{12}$ and $[10]_{12} = [34]_{12}$, so $[8]_{12} + [10]_{12} = [18]_{12} = [20]_{12} + [34]_{12} = [54]_{12} = [6]_{12}$.
+
+$\mathbb{Z}_{n}$ forms a commutative ring.
+
+\textbf{Definition} If $[a]_{n} \in \mathbb{Z}_{n}$ and $[a]_{n}[b]_{n} = [0]_{n}$ for some nonzero congruence class $[b]_{n}$, then $[a]_{n}$ is called a \textit{divisor of zero}.
+
+If $[a]_{n}$ is not a divisor of zero, we can cancel $[a]_{n}$ in $[a]_{n}[b]_{n} = [a]_{n}[c]_{n}$ to see $[b]_{n}=[c]_{n}$
+
+\textbf{Definition} If $[a]_{n} \in \mathbb{Z}_{n}$ and $[a]_{n}[b]_{n} = [1]_{n}$, then $[b]_{n}$ is the \textit{multiplicative inverse} of $[a]_{n}$. We also say that $[a]_{n}$ is an \textit{invertible element} of $\mathbb{Z}_{n}$, or a \textit{unit} of $\mathbb{Z}_{n}$.
+
+If $[a]_{n}$ has a multiplicative inverse, it cannot be a divisor of zero because $[a]_{n}[b]_{n} = [0]_{n}$ implies $[b]_{n}=[a]_{n}^{-1}([a]_{n}[b]_{n})=[a]_{n}^{-1}[0]_{n}=[0]_{n}$
+
+$[a]_{n}$ can be written as $[a]$.
+
+\textbf{Proposition.} Let $n$ be a positive integer. Then a) the congruence $[a]_{n}$ has a multiplicative inverse in $\mathbb{Z}_{n}$ if and only if $gcd(a,n) = 1$. b) A nonzero element of $\mathbb{Z}$ either has a multiplicative inverse or is a divisor of zero.
+
+\textbf{Corollary} The following conditions on the modulus $n > 0$ are equivalent,
+
+1) $n$ is prime.
+
+2) $\mathbb{Z}_{n}$ has no divisors of zero except $[0]_{n}$.
+
+3) Every nonzero element of $\mathbb{Z}_{n}$ has a multiplicative inverse.
+
+\textbf{Definition} Let $n$ be a positive integer. The number of positive integers less than and relatively prime to $n$ will be denoted by \textit{Euler's totient function} $\varphi (n)$.
+
+\textbf{Proposition} If the prime factorization of $n$ is $n = p_{1}^{\alpha_{1}}p_{2}^{\alpha_{2}} \ldots p_{k}^{\alpha_{k}}$, where $\alpha_{i} > 0$ for $1 \leq i \leq k $, then $$\varphi (n) = n \Big( 1 - \frac{1}{p_{1}} \Big) \Big( 1 - \frac{1}{p_{2}} \Big) \cdots \Big( 1 - \frac{1}{p_{k}} \Big) $$
+
+\textbf{Theorem (Euler)} If $gcd(a,n)=1$, then $a^{\varphi (n)} \equiv 1 (\mod n)$
+
+\textbf{Corollary (Fermat)} If $p$ is a prime number, then for any integer $a$ we have $a^{p} = a(\mod p)$.
+
+\section{Functions}
+
+\subsection{Functions}
+
+\textbf{Definition} The Cartesian product of two sets $A$ and $B$ is the set of ordered pairs $A \times B = \{ (a,b) | a \in A$ and $ b \in B \}$.
+
+\textbf{Definition} Let $S$ and $T$ be sets. A \textbf{function} from $S$ into $T$ is a subset $F$ of $S \times T$ such that for each element $x \in S$ there is exactly one element $y \in T$ such that $(x, y) \in F$. $S$ is called the \textbf{domain} of the function, and $T$ is called the codomain of the function. The subset $\{ y \in T | (x, y) \in F $ for some $ x \in S \}$ of the codomain is called the \textbf{image} of the function.
+
+\textbf{Definition} Let $f : S \to T$ and $f : T \to U$ be functions. The \textit{composite} $g \circ f$ of $f$ and $g$ is the function from $S$ to $U$ defined by the formula $(g \circ f)(x) = g(f(x))$ for all $x \in S$. The composite is defined only when the codomain of the first function is equal to the domain of the second function. Some authors allow the composite of two functions to be defined if the codomain of the first function is a subset of the domain of the second function.
+
+Composition of functions is associative.
+
+\textbf{Definition} Let $f : S \to T$ be a function. $f$ is said to \textit{map} $S$ \textit{map} onto $T$ if for each element $y \in T$ there exists an element $x \in S$ with $f(x) = y$. If $f$ maps $S$ onto $T$, we say $f$ is a \textit{surjective (onto)} function.
+
+If $f(x_{1}) = f(x_{2}) \rightarrow x_{1} = x_{2}$ for all $x_{1}, x_{2} \in S$ then $f$ is said to be \textit{injective} or \textit{one-to-one}.
+
+If $f$ is both one-to-one and onto (both surjective and injective), then $f$ is said to be a \textit{one-to-one correspondence} or \textit{bijection} from $S$ to $T$.
+
+Note: saying $f$ maps $S$ \textbf{into} $T$ is different from saying $f$ maps $S$ \textbf{onto} $T$
+
+\textbf{Proposition} Let $f : S \to T$ and $f : T \to U$ be functions.
+
+a) If $f$ and $g$ are one-to-one, then $g \circ f$ is one-to-one.
+
+b) If $f$ and $g$ are onto, then $g \circ f$ is onto.
+
+\textbf{Definition} Let $S,T$ be sets. The \textit{identity} function $1_{S} : S \to S$ is defined by the formula $1_{S}(x)=x$ for all $x \in S$.
+If $f : S \to T$ is a function, then a function $g : T \to S$ is called an inverse for $f$ if $g \circ f = 1_{S}$ and $f \circ g = 1_{T}$.
+
+$f(1_{S}(x)) = 1_{T}(f(x)) = f(x)$.
+
+\textbf{Proposition} Let $f : S \to T$ be a function. If $f$ has an inverse, then $f$ must be one-to-one and onto. Conversely, if $f$ is one-to-one and onto, it has a unique inverse.
+
+\textbf{Proposition} Let $f : S \to T$ be a function and assume that $S$ and $T$ are finite sets with the same number of elements. The $f$ is a one-to-one correspondence if it is either one-to-one or onto.
+
+\subsection{Equivalence Relations}
+
+An equivalence relationship $~$ is an operation that satisfies the following:
+
+Reflexivity: $\forall x,$ $x = x$
+
+Symmetry: $x = y \rightarrow y = x$
+
+Transitivity: $x = y \land y = z \rightarrow x = z$
+
+\subsection{Permutations}
+
+\section{Groups}
+
+$xa = b$ and $ax = b$ have a unique solution.
+
+\subsection{Isomorphisms}
+
+$G_1$ $G_2$ be groups and $\phi : G_1 \to G_2$ to be a bijection. Then $\phi$ is a group isomorphism if $$\phi(ab) = \phi(a)\phi(b)$$ for all $a, b \in G_1$. Then $G_1$ and $G_2$ are said to be isomorphic and we write $G_1 \cong G_2$
+
+Then $\phi(a_1a_2 \cdots a_n) = \phi(a_1)\phi(a_2) \cdots \phi(a_n)$ by induction, so $\phi(a^n) = \phi(a)^n$
+
+Also, $\phi(e_1) \cdot \phi(e_1) = \phi(e_1e_1) = \phi(e_1) = \phi(e_1)e_2$ so $\phi(e_1) = e_2$
+
+And finally $\phi(a^{-1}) \phi(a) = \phi(a^{-1}a) = \phi(e_1) = e_2$
+
+Proposition The inverse of a group isomorphism is a group isomorphism.
+
+The composite of two group isomorphisms is a group isomorphism.
+
+\subsection{Cyclic Groups}
+
+Every subgroup of a cyclic group is cyclic.
+
+If $|G|$ is infinite, $G \cong \Z$.
+
+If $|G| = n$, then $G \cong \Z_n$
+
+Let $G = <a>$ be a finite cyclic group of order $n$, then if $m \in \Z$ then $<a^m> = <a^d>$ where $d = gcd(m, n)$ and $a^m$ has order $n/d$.
+
+Corollaries
+
+Let $n$ be a positive integer with prime decomposition $n = p_1^{\alpha_1}p_2^{\alpha_2}\cdots p_n^{\alpha_n}$ where $p_1 < p_2 < \cdots < p_n$. Then $\Z_n \cong Z_{p_1^{\alpha_1}} \times \Z_{p_2^{\alpha_2}} \times \cdots \times \Z_{p_n^{\alpha_n}}$ This is a special case of the general structure theorem for finite abelian groups, which states that any finite abelian group is isomorphic to a direct product of cyclic groups of prime power order.
+
+Corollary about $\phi(n)$
+
+\subsection{Permutation Group}
+
+Any subgroup of the symmetric group Sym(S) on a set S is called a permutation group.
+
+When groups were first studied, they were thought of as sets of permutations closed under products and including the identity, together with inverses. (p. 150)
+
+Theorem (Cayley) Every subgroup is isomorphic to a permutation group.
+
+Rigid motions
+
+Definition Let $n \geq 3$ be an integer. The group of rigid motions of a regular $n$-gon is called the $n$th dihedral group, denoted by $D_n$.
+
+The set of all even permutations of $S_n$ is a subgroup of $S_n$
+
+\subsection{Homomorphisms}
+
+Example 3.7.4 (linear diffeqs too) (p. 162)
+
+Definition $G_1$ $G_2$ groups, $\phi : G_1 \to G_2$ be a function. $\phi$ is a group homomorphism if $$\phi(ab) = \phi(a)\phi(b)$$ for all $a, b \in G_1$.
+
+We also have $\phi(e_1) = e_2$
+ $\phi(a)^{-1} = \phi(a^{-1})$ for all $a \in G_1$
+ for any $n \in \Z$ and $a \in G$, $\phi(a^n) = \phi(a)^n$
+ if $a \in G_1$ and $a$ has order $n$, then the order of $\phi(a) \in G_2$ is a divisor of $n$
+
+Definition \textbf{Kernel} $\{ x \in G_1 : \phi(x) = e \}$ is called the kernel of $\phi$ and denoted $ker(\phi)$
+
+Proposition 3.7.4
+
+Definition normal subgroup
+
+Proposition 3.7.6
+
+Proposition 3.7.7 Let $\phi : G_1 \to G_2$
+
+Theorem 3.7.8
+
+Proposition 3.7.9
+
+Example 3.7.12
+
+Example 3.7.13
+
+\subsection{Cosets, Normal Subgroups, Factor Groups}
+
+\section{Polynomials}
+
+Definition (Field)
+
+Definition Polynomial
+
+Definition Polynomial GCD
+
+Bezout's Identity for Polynomial GCD
+
+4.3.2 Congruence modulo p(x)
+
+4.3.6 Theorem
+
+Definition (Isomorphism of fields) $F_1$, $F_2$ fields, $\phi : F_1 \to F_2$ a bijection, and $\phi(a + b) = \phi(a + b)$ and $\phi(ab) = \phi(a)\phi(b)$, then $\phi$ is an isomorphism of fields.
+
+4.3.8 Theorem (Kronecker) Let F be a field and let $f(x)$ be any nonconstant polynomial in $F[x]$. Then there exists an extension field $E$ of $F$ and an element $u \in E$ such that $f(u) = 0$.
+
+4.3.9 Exists a field extension over which $f$ can be factored into linear factors
+
+\subsection{Polynomials over $\Z$, $\Q$, $\R$, and $\C$}
+
+Definition An integer polynomial is called primitive if 1 and -1 are the only common divisors of its coefficients.
+
+Lemma (Gauss's Lemma) The product of two primitive polynomial is primitive.
+
+Theorem (Eisenstein's Irreducibility Criterion) Let $f(x) = $ etc be a polynomial with integer coefficients. If there exists a prime number $p$ such that $a_{n-1} \equiv a_{n_2} \equiv \cdots \equiv a_0 \equiv 0 \mod{p}$ but $a_n \neq 0 \mod{p}$ and $a_n \neq 0 \mod{p^2}$, then $f(x)$ is irreducible over $\Q$.
+
+4.4.7 Corollary If $p$ is prime, then the polynomial $\Phi_p(x) = x^{p-1} + x^{p-2} + \cdots + x + 1$ is irreducible over $\Q$.
+
+4.4.8 $n$th roots of unity (see section 8.5)
+
+4.4.10
+
+4.4.11 Let $f(x) \in \R[x]$. Then $f(z) = 0$ for complex $z \in \C$ iff $f(\overline{z}) = 0$.
+
+Note: $ax^3 + bx^2 + cx + d = 0$ can be reduced to $x^3 + px + q = 0$ by dividing by $a$ and introducing the variable $y = b/3a$.
+
+\section{Commutative Rings}
+
+\subsection{Commutative Rings and Integral Domains}
+
+\subsection{Ring Homomorphisms}
+
+
+
+
+\end{document}

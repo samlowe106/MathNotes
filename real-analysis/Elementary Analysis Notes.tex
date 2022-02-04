@@ -1,0 +1,313 @@
+\documentclass[12pt]{article}
+\usepackage{amsfonts} % \mathbb
+\usepackage{amsmath}
+\usepackage{relsize}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\begin{document}
+
+\section{Open Sets}
+
+A set $O \subseteq \R$ is \textbf{open} if for all points $a \in O$ there exists an $\varepsilon$-neighborhood $V_{\varepsilon}(a) \subseteq O$.
+
+\section{Closed Sets}
+
+\textbf{Definition (Limit Points)} A point $x$ is a \textbf{limit point} (or \textbf{cluster point} or \textbf{accumulation point}) of a set $A$ is every $\varepsilon$-neighborhood $V_{\varepsilon}(x)$ of $x$ intersects the set $A$ at some point other than $x$.
+
+\textbf{Theorem} A point $x$ is a limit point of a set $A$ if and only if $x = \lim a_n$ for some sequence $(a_n)$ contained in $A$ satisfying $a_n \neq x$ for all $n \in \N$.
+
+\textbf{Definition (Isolated Point)} A point $a \in A$ is an \textbf{isolated point} if it is not a limit point of $A$.
+
+\textbf{Definition (Closed Set)} A set $F \subseteq \R$ is closed if and only if it contains its limit points.
+
+\textbf{Theorem} A set $F \subseteq \R$ is closed if and only if every sequence in $F$ converges to a value in $F$.
+
+\textbf{Theorem (Density of $\Q$ in $\R$)} For every $y \in \R$, there exists a sequence of rationals that converges to $y$.
+
+\textbf{Definition (Closure)} Given a set $A \subseteq \R$, let $L$ be the set of all limit points of $A$. The \textbf{closure} of a $A$ is the set $\overline{A} = A \cup L$.
+
+\textbf{Theorem} For any $A \subseteq \R$, the closure $\overline{A}$ is closed and the smallest closed set containing $A$.
+
+\textbf{Theorem} A set $O$ is open if and only if $O^C$ is closed. A set $F$ is closed if and only if $F^C$ is open.
+
+\textbf{Note} Open and closed are not necessarily antonyms. The sets $\R$ and $\emptyset$ are both open and closed simultaneously (though they are the only sets with this property).
+
+\section{Compact Sets}
+
+\textbf{Definition (Compactness)} A set $K \subseteq \R$ is \textbf{compact} is every sequence in $K$ has a subsequence that converges to a limit also in $K$.
+
+\textbf{Theorem} Closed intervals $[a,b]$ are compact (by the Bolzano-Weierstrass theorem).
+
+
+
+\section{Real Numbers}
+
+\subsection{Construction of $\R$: Limits of Sequences}
+
+\subsection{Construction of $\R$: Dedekind Cuts}
+
+Observe that $a = \sup \{r \in \Q \, | \, r < a \}$ for each $a \in \R$
+
+Subsets $\alpha$ of $\Q$ having the form $\{r \in \Q \, | \, r < a \}$ satisfy these properties:
+$\alpha \neq \Q$ and $\alpha$ is not empty ($\alpha$ is a strict nonempty subset of $\Q$)
+If $r \in \alpha$, $s \in \Q$ and $s < r$, then $s \in \alpha$
+$\alpha$ contains no largest rational
+
+Every subset $\alpha$ of $\Q$ that satisfies these three properties has the form $\{r \in \Q : r < a\}$ for some $a \in \R$, and $a = \sup\alpha$. Subsets $\alpha$ of $\Q$ satisfying these properties are called \textit{Dedekind cuts}.
+
+$\R$ is defined as the space of all Dedekind cuts.
+
+Each rational $q$ corresponds to the Dedekind cut $q^{*}=\{r \in \Q : r < q\}$; by extension, $\Q^{*} = \{s* : s \in \mathbb{Q} \}$ ($s*$ is a Dedekind cut) shows that $\Q \subseteq \R$.
+
+The set $\R$, as just defined, is given an order structure as follows: if $\alpha$ and $\beta$ are Dedekind cuts, then we write $\alpha \leq \beta$ to mean $\alpha \subseteq \beta$. All three properties of Dedekind cuts hold for this ordering.
+
+Example: let $\alpha$ be the set of all real numbers $x$ such that $x^{2} \leq 2$ and let $\beta$ is the set of real numbers such that $y > 2$; note that $\alpha$ has no largest rational member and $\beta$ has no least rational member, so the cut defines the number $\sqrt{2}$. % https://www.britannica.com/science/Dedekind-cut
+
+Addition in $\R$ is defined as follows: if $\alpha$ and $\beta$ are Dedekind cuts, then $$\alpha + \beta = \{r_{1} + r_{2} : r_{1} \in \alpha \land r_{2} \in \beta\}$$ which is also a Dedekind cut.
+
+\subsection{Supremum and Infimum}
+
+Let $S$ be a nonempty subset of $\R$.
+If there is some $s_{0} \in S$ such that $s \leq s_{0}$ for all $s \in S$ then $s_{0}$ is the \textit{maximum} of $S$, denoted $s_{0} = max S$.
+
+If there is some $s_{0} \in S$ such that $s \geq s_{0}$ for all $s \in S$ then $s_{0}$ is the \textit{manimum} of $S$, denoted $s_{0} = min S$.
+
+Every finite nonempty subset of $\R$ has a maximum and a minimum.
+
+Let $S$ be a nonempty subset of $\R$.
+
+If $S$ is bounded above and $S$ has a least upper bound, then we call it the \textit{supremum of $S$} and we denote it by $\sup S$.
+
+If $S$ is bounded below and $S$ has a greatest upper bound, then we call it the \textit{infimum of $S$} and we denote it by $\inf S$.
+
+The \textit{completeness axiom} is defined for $\R$. Every nonempty subset $S$ of $\R$ that is bounded above has a least upper bound. Equivalently, $\sup S$ exists and is a real number.
+
+$\sup S = +\infty$ if $S$ is not bounded above.
+
+$\inf S = -\infty$ if $S$ is not bounded below.
+
+\subsection{The Completeness Property}
+
+\subsection{The Intermediate Value Property}
+
+\subsection{Denseness of $\Q$ in $\R$}
+
+If $a, b \in \R$ and $a < b$, $\exists r \in Q$ such that $a < r < b$
+
+Proof: we need to show that $a < \frac{m}{n} < b$ for $m, n \in \Z$, $n > 0$, so we need $an < m < bn$. Since $b - a > 0$, the Archimedean property shows that there exists an $n \in \N$ such that $n(b-a) > 1$ hence $bn - an > 1$. So, there's an integer $m$ such that $an < m < bn$. To prove that $m$ exists, we argue that by the Archimedean property $\exists k > max{|an|, |bn|}$ so that $-k < an < bn <k$. Then the sets $K = {j \in \Z : -k \leq j \leq -k}$ and ${j \in K : an < j}$ are finite (and nonempty, since they both contain $k$). Let $m = min{j \in K : an < j}$. Then $-k < an < m$. Since $ m > -k$, we have $m-1 \in K$, so the inequality $an < m - 1$ is false by our choice of $m$. Thus $m - 1 \leq an$ and, using $bn - an > 1$, we have $m \leq an + 1 < bn$. Thus $an < m < bn$ holds.
+
+\subsection{Denseness of $\I$ in $\R$}
+
+\subsection{Algebraic Numbers}
+
+\subsection{Rational Zeroes Theorem}
+
+\textbf{Corollary}
+
+\subsection{The Triangle Inequality}
+
+$$|a + b| \leq |a| + |b|$$
+
+\subsection{Archimedean Property}
+
+If $a > 0$ and $b > 0$, then for some positive integer $n$, we have $na > b$.
+
+\section{Limits of Sequences}
+
+Sequences can be denoted $(s_{n})_{n=m}^{\infty}$ or just $(s_{n})_{n\in \mathbb{N}}$ if $m=1$.
+
+For example, the sequence given by $a_{n}=(-1)^{n}$ for $n \geq 0$ is $(1, -1, 1, -1, ...)$. This is also a function $a : \N \to \N$ whose domain is $\{0, 1, 2, ...\}$ and whose codomain is $\{1, -1\}$
+
+A sequence $(s_{n})$ of real numbers converges to a real number $L$ provided that for each $\epsilon > 0$ there exists a number $N$ such that $n > N$ implies $|s_{n} - L| < \epsilon $, in which case we write $\displaystyle{\lim_{n \to \infty}} s_{n} = L$, $\lim s_{n} = L$, or $s_{n} \to L$.
+
+In other words, for all $n > N$, the value $s_{n}$ is within $\epsilon$ of $L$.
+
+\textbf{Definition.} A \textbf{subsequene} of a sequence $(s_{n})$ is a sequence of the form $(t_{k})$ where for each $k$ there's a positive integer $n_{k}$ such that $n_{1}<n_{2}< \cdots <n_{k-1}<n_{k}< \cdots$ and $t_{k} = s_{n_{k}}$. In other words, a subsequence of the sequence $(s_{n})$ can be constructed by selecting, in order, an infinite subset of terms from $(s_{n})$.
+
+\subsection{Subsequences}
+
+\textbf{Theorem.} If a sequence $(s_{n})$ converges, then every subsequence converges to the same limit.
+
+\textbf{Theorem.} Every sequence has a monotonic subsequence.
+
+\textbf{Bolzano-Weierstrass Theorem.} Every bounded subsequence has a convergent subsequence.
+
+\subsection{Topological Concepts on Metric Spaces}
+
+\textbf{Definition (Metric Space)} Let $S$ be a set and let $d$ be a function defined for all pairs of elements in $S$, saisfying: \begin{enumerate}
+    \item $d(x,x) = 0$ for all $x \in S$ and $d(x,y) > 0$ for all distinct $x, y \in S$
+    \item $d(x,y) = d(y,x)$ for all $x, y \in S$
+    \item $d(x,z) \leq d(x,y) + d(y,z)$ for all $x,y,z \in S$ (the triangle inequality)
+\end{enumerate} Such a function is called a \textbf{distance function} or \textbf{metric} on $S$. A \textbf{metric space} is the pair $(S, d)$. The same set may have more than one metric defined on it.
+
+\textbf{Definition (Convergence)} A sequence $(s_n)$ in a metric space $(S,d)$ \textbf{converges} to $s$ in $S$ if $\lim_{n \to \infty} d(s_n, s) = 0$. A sequence $(s_n)$ in $S$ is a \textbf{Cauchy sequence} if for each $\epsilon > 0$ there exists an $N$ such that $m,n > N$ implies $d(s_m, s_n) < \epsilon$.
+
+\textbf{Definition (Complete)} A metric space is said to be \textbf{complete} if every Cauchy sequence in $S$ converges to some element in $S$.
+
+\textbf{Lemma} A sequence $(x^{(n)})$ in $R^k$ converges if and only if for each $j = 1,2,\ldots,k$, the sequence $(x_j^{(n)})$ converges in $\R$. A sequence $(x^{(n)})$ in $R^k$ is a Cauchy sequence if and only if each sequence $(x_j^{(n)})$ is a Cauchy sequence in $\R$. 
+
+\textbf{Theorem} Euclidean $k$-space $\R^k$ is complete.
+
+\textbf{Bolzano-Weierstrass Theorem} Every bounded sequence in $\R^k$ has a convergent subsequence.
+
+\section{Series}
+
+The infinite series $\sum_{n=m}^\infty a_n$ is said to converge provided the sequence $(s_n)$ of partial sums converges to a real number $S$, in which case we define $\sum_{n=m}^\infty a_n = S$, which is equivalent to $\lim s_ n = S$ or $\lim_{n \to \infty} \Big( \sum_{k=m}^n a_k \Big) = S$.
+
+\subsection{Absolute Convergence}
+
+The sum $\sum a_n$ is said to \textbf{converge absolutely} or be \textbf{absolutely convergent} if $\sum |a_n|$ converges. Absolutely convergent series converge by the comparison test.
+
+\subsection{Geometric Series}
+
+For $|r| < 1$, we have $$\sum_{n=0}^\infty ar^n = \frac{a}{1-r}$$ If $a \neq 0$ and $|r| \geq 1$, the series diverges.
+
+\subsection{$p$-series}
+
+$p$-series are geometric series of the form $\sum_{n=0}^\infty \frac{1}{n^p}$. $p$-series converge if and only if $|p| > 1$.
+
+\subsection{Cauchy Criterion for Series}
+
+
+
+A series converges if and only if it satisfies the Cauchy criterion.
+
+\subsection{Corollary}
+
+If a series $\sum a_n$ converges, then $\lim a_n = 0$.
+
+\section{Continuity}
+
+Let $U \subseteq \R$ and $f : U \to \R$. $f$ is continuous at $x_0 \in U$ if: \begin{enumerate}
+\item for every sequence $(x_n)$ in $U$ converging to $x_0$, we have $\lim_n f(x_n) = f(x_0)$
+
+\item for every $\epsilon > 0$ there exists a $\delta > 0$ such that $x \in U$ and $|x - x_0| < \delta$ imply $|f(x) - f(x_0)| < \epsilon$
+\end{enumerate} These definitions are equivalent. We can also think of $\delta$ as a function of $x_0$ and $\epsilon$, and it's sometimes denoted $\delta(x_0, \epsilon)$ or similar when discussing continuity.
+
+\subsection{Limit Theorems for Continuity}
+
+\section{Properties of Continuous Functions}
+
+\subsection{Intermediate Value Theorem}
+
+If $f$ is a real-valued function on an interval $I$, then $f$ has the intermediate property on $I$: Whenever $a, b \in I$, $a < b$ and $y$ lies between $f(a)$ and $f(b)$ (either $f(a) < y < f(b)$ or $f(b) < y < f(a)$) then there exists at least one in $x \in (a,b)$ such that $f(x) = y$.
+
+\textbf{Corollary} If $f$ is a real-valued function on an interval $I$, then the set $f(I) = \{ f(x) \, | \, x \in I \}$ is also an interval or a single point.
+
+\textbf{Corollary} If $f$ is a one-to-one continuous function on an interval $I$, then $f$ is strictly increasing or strictly decreasing.
+
+\subsection{Extreme Value Theorem}
+
+\section{Uniform Continuity}
+
+Let $f$ be a function on $U \subseteq \R$. Then $f$ is \textbf{uniformly continuous} on $U$ if \begin{center} for every $\epsilon > 0$ there exists some $\delta > 0$ such that $x,y \in U$ and $|x - y| < \delta$ implies $|f(x) - f(y)| < \epsilon$ \end{center} Note that a function cannot be uniformly continuous \textit{only} at a point; it must be uniformly continuous on an interval. Notice also that $\delta$ not depends only on $\epsilon$, not on $x$ or $y$, so $\delta$ must satisfy the $|f(x) - f(y)| < \delta$ for any choice of $x$ and $y$ on $U$ (hence the "uniformity" in uniformly continuous). As such, $\delta$ is sometimes denoted $\delta(\epsilon)$ or similar when discussing uniform continuity.
+
+\subsection{Corollary} If a function is uniformly continuous on its domain, it is continuous on its domain.
+
+\subsection{Corollary} If a function is continuous on $[s,b]$ then it is uniformly continuous on $[a,b]$.
+
+\subsection{Corollary} If a function $f$ is uniformly continuous on $U$ and $(s_n)$ is a Cauchy sequence in $U$, then $(f(s_n))$ is a Cauchy sequence.
+
+\subsection{Corollary} A real-valued function $f$ on $(a,b)$ is uniformly continuous on $(a,b)$ if and only if it can be extended to a continuous function $\bar{f}$ on $[a,b]$.
+
+\section{Limits of Function}
+
+Let $U \subseteq \R$, $f$ be a function defined on $U$, $a \in \R \cup \{ -\infty, \infty \}$ that is the limit of some sequence in $U$, and let $L \in \R \cup \{ -\infty, \infty \}$. We write $\lim_{x \to a^U} f(x) = L$ if \begin{itemize}
+\item for every sequence $(x_n) \in U$ with limit $a$, we have $\lim_{n \to \infty} f(x_n) = L$
+
+\item for every $\epsilon > 0$ there exists a $\delta > 0$ such that $x \in U$ and $|x - a| < \delta$ imply $|f(x) - L| < \epsilon$
+\end{itemize} These definitions are equivalent. $\lim_{x \to a^U} f(x)$ is read ``limit as $x$ tends to $a$ along $U$ of $f(x)$."
+
+We see that a function $f$ is continuous at $a \in U$ if and only if $\lim_{x \to a^U} f(x) = f(a)$.
+
+For $a \in \R$ and a function $f$, we write \begin{enumerate}
+\item $\lim_{x \to a} f(x) = L$ provided $\lim_{x \to a} f(x) = L$ for some $U = J \backslash \{ a \}$ where $J$ is an open interval containing $a$. $\lim_{x \to a} f(x)$ is called the two-sided limit of $f$ at $a$.
+
+\item $\lim_{x \to a^+} f(x) = L$ provided $\lim_{x \to a^U} f(x) = L$ for some open interval $U = (a,b)$. In this case, we call $L$ the \textbf{right-hand limit of $f$ at $a$.}
+
+\item $\lim_{x \to a^-} f(x) = L$ provided $\lim_{x \to a^U} f(x) = L$ for some open interval $U = (c,a)$. In this case, we call $L$ the \textbf{right-hand limit of $f$ at $a$.}
+
+\item $\lim_{x \to \infty} f(x) = L$ provided $\lim_{x \to \infty^U} f(x) = L$ for some interval $U = (c,\infty)$. Likewise, we write $\lim_{x \to \infty} f(x) = L$ provided $\lim_{x \to \infty^U} f(x) = L$ for some interval $U = (c,\infty)$. 
+
+\end{enumerate}  Note that $f$ need not be defined at $a$, and that $\lim_{x \to a} f(x)$ need not equal $f(a)$ even if $f(a)$ is defined. These limits are also unique (they don't depend on $U$).
+
+\textbf{Theorem.}
+
+\textbf{Corollary} Let $f$ be a function defined on $J \ \{ a \}$ for some open interval $J$ containing $a$, and let $L$ be a real number. Then $\lim_{x \to a} f(x) = L$ if and only if \begin{center}
+for each $\epsilon > 0$ there exists $\delta > 0$ such that $0 < |x - a| < \delta$ implies $|f(x) - L| < \epsilon$.\end{center}
+
+\textbf{Corollary} Let $f$ be a function defined on $J \ \{ a \}$ for some open interval $J$ containing $a$. Then $\lim_{x \to a} f(x)$ exists if and only if $\lim_{x \to a^+} f(x)$ and $\lim_{x \to a^-} f(x)$ both exist and are equal, in which case all three limits are equal.
+
+\subsection{Limit Theorems for Functions}
+
+\section{Differentiation}
+
+\section{Theorem.} If a function $f$ is differentiable at a point $a$, then $f$ is continuous at $a$.
+
+\subsection{Proof of the Product Rule}
+
+\subsection{Proof of the Quotient Rule}
+
+\subsection{Proof of the Chain Rule}
+
+\subsection{The Mean Value Theorem}
+
+To prove the Mean Value Theorem, we must first establish several other theorems:
+
+\textbf{Theorem.} If $f$ is defined on an open interval containing $x_0$, is differentiable at $x=0$, and $f$ assumes a local maximum or minimum at $x_0$, then $f'(x_0) = 0$.
+
+\textbf{Rolle's Theorem.} Let $f$ be a continuous function on $[a,b]$ that is differentiable on $(a,b)$ and satisfies $f(a) = f(b)$, then there exists at least one $x \in (a,b)$ such that $f'(x) = 0$.
+
+\textbf{The Mean Value Theorem}
+
+Let $f$ and $g$ be continuous functions on $[a,b]$ that are differentiable on $(a,b)$. Then there exists at least one $x \in (a,b)$ such that $$f'(x)[g(b)-g(a)] = g'(x)[f(b)-f(a)]$$ When $g(x) = x$, the equality reduces to $f'(x)[b-a] = f(b)-f(a)$; if $f(a) = f(b)$ as well, then the equality further reduces to $f'(x) = 0$ (this special case is called \textbf{Rolle's Theorem}).
+
+\textbf{Corollary 29.5 - include discussion too!}
+
+\textbf{Corollary 29.7}
+
+\textbf{Intermediate Value Theorem for Derivatives} Let $f$ be a differentiable function on $(a,b)$. If $a < x_1 < x_2 < b$ and $c$ lies between $f'(x_1)$ and $f'(x_2)$, then there exists at least one $x \in (x_1, x_2)$ such that $f'(x) = c$.
+
+\subsection{L'Hôpital's Rule}
+
+Sometimes written L'Hospital's rule,\footnote{In the $17^{th}$ and $18^{th}$ centuries, the name was commonly spelled L'Hospital (including by L'Hospital himself). However, French spellings have since changed, and the former spelling is mostly used by languages that do not typically use the circumflex.} this theorem states that if $f$ and $g$ are differentiable functions for which the following limits exist: $$\lim_{x \to s} \frac{f'(x)}{g'(x)} = L$$ then if $$\lim_{x \to s} f(x) = \lim_{x \to s} g(x) = 0$$ or if $$\lim_{x \to s} |g(x)| = \infty$$ then $$\lim_{x \to s} \frac{f(x)}{g(x)} = L $$ where $s$ represents any of $a$, $a^+$, $a^-$, $\infty$, or $-\infty$ for $a \in \R$.
+
+\section{Taylor's Theorem}
+
+\section{Integration}
+
+\subsection{The Darboux Integral}
+
+Let $f$ be a bounded function over a closed interval $[a,b]$ and $a<b$. For $U \subseteq [a,b]$ we adopt the notation $$M(f,S) = \sup \{ f(x) \, | \, x \in U \} $$ $$m(f,S) = \inf \{ f(x) \, | \, x \in S \} $$
+
+$$U(f,P) = \sum_{k=1}^n M\big(f, [t_{k-1}, t_k ]) \big) \cdot \big( t_k - t_{k-1} \big) $$
+
+$$L(f,P) = \sum_{k=1}^n m\big(f, [t_{k-1}, t_k ]) \big) \cdot \big( t_k - t_{k-1} \big) $$
+
+$$U(f) = \inf \{ U(f,P) \, | \, P \text{ a partition of } S \}$$
+
+$$L(f) = \sup \{ L(f,P) \, | \, P \text{ a partition of } S \}$$
+
+\textbf{Theorem.} A bounded function $f$ on $[a,b]$ is integrable if and only if for each $\epsilon > 0$ there exists a partition $P$ of $[a,b]$ such that $U(f,P) - L(f,P) < \epsilon$.
+
+\textbf{Definition. The Riemann Integral}
+
+\textbf{Theorem.} A bounded function on $[a,b]$ is Riemann integrable if and only if it is Darboux integrable, in which case the values of the integrals agree.
+
+\textbf{Theorem.} Every monotonic function on $[a,b]$ is integrable.
+
+\textbf{Theorem.} Every continuous function on $[a,b]$ is integrable.
+
+\section{The Fundamental Theorem of Calculus}
+
+\section{Improper Integrals}
+
+\section{Continuous Nowhere-Differentiable Functions}
+
+\end{document}

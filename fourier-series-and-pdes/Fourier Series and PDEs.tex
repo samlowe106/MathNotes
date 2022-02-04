@@ -1,0 +1,271 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{esint} % cyclic integrals
+\usepackage{amsfonts} % \mathbb
+\usepackage{mathtools}
+\usepackage{latexsym}
+\usepackage{amssymb} % therefore
+\usepackage{hyperref} % allows hyperlinks, including in the table of contents
+\usepackage{amsthm}
+%\usepackage[document]{ragged2e} % left justifies text
+
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Curl}{Curl}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\title{Fourier Series and PDEs Notes}
+\author{Sam Lowe}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+% Office Lake 538, W 12-1pm in person, Tues 9-11am on Zoom
+
+
+\section{Review of 2341 and Preliminaries}
+
+\underline{Lecture 1}
+
+We can write an ordinary differential equation to find the temperature at any point on a rod of length $L$; $T(x)$ could represent the temperature, where $x$ is length. However, we know that the temperature at each point also depends on time, so we have to expand our model to cover two variables.
+
+We need partial derivatives. For our temperature function $T = f(x, t)$, we'll be concerned with $\frac{\partial T}{\partial x}$ and $\frac{\partial T}{\partial t}$.
+
+We have \textbf{heat equation in one dimension}, $$\frac{\partial T}{\partial t} = \frac{\partial^2 T}{\partial x^2}$$ which can also be written as $T_t = T_{xx}$. This equation has \textit{no general solution.} However, we can solve it using Fourier series.
+
+\textbf{Wave equation in one dimension} measures displacement $u(x, t)$
+
+$$\frac{\partial^2 u}{\partial t^2} = c^2\frac{\partial^2 u}{\partial x^2}$$
+
+\textbf{Maxwell's equation}, which is used in communication.
+
+\textbf{Navier-Stokes equation} which is used in weather forecasting.
+
+In ordinary differential equations, a \textit{general solution always exists}. In PDEs, there are \textit{no general solutions}.
+
+\subsection{Review of MATH 2341}
+
+\textbf{First order separable differential equations} take the form $$\frac{dy}{dx} = f(x)g(y)$$ with solution $$\int \frac{1}{g(y)}dy = \int f(x)dx$$ yielding $G(y) = F(x) + C$ which is the implicit general solution, and can typically be rearranged to isolate $y$ and yield an explicit general solution.
+
+Example: $y' = xy$ which yields the explicit solution $|y| = e^{\frac{x^2}{2} + C}$, typically written as $Ce^{\frac{x^2}{2}}$, so $y$ equals either $Ce^{\frac{x^2}{2}}$ or $-Ce^{\frac{x^2}{2}}$.
+
+We also have \textbf{first-order linear differential equations} (some of which are separable!). $y' + p(x)y = q(x)$. We find the integrating factor $I(x) = e^{\int p(x)dx}$. Multiplying both sides by $I(x)$ yields $I(x)y + p(x)I(x)y = I(x)q(x)$; the left side resembles the product rule of $\left(I(x)y\right)'$. So we integrate $I(x)y = \int I(x)q(x)dx + C$.
+
+Example: $y' - \frac{1}{x}y = 2x + 1$ for $x > 0$. We set $p(x) = -\frac{1}{x}$ and get $I(x) = e^{-\ln(x)} = \frac{1}{x}$. We then have $\frac{1}{x}y' - \frac{1}{x^2}y = \left( \frac{1}{x}y \right)' = 2 + \frac{1}{x}$. Integrating yields $\frac{1}{x}y = 2x + \ln(x) + C$ so $y = 2x^2 + x\ln(x) + Cx$.
+
+\textbf{Second order constant-coefficient differential equations} take the form $ay'' + by' + cy = 0$ for $a \neq 0$. The solution is $y = e^{rx} \to y' = re^{rx} \to \to y'' = r^2e^{rx}$ where each $r$ is the roots of the characteristic equation (polynomial) $at^2 + bt + c = 0$. \begin{itemize}
+    \item If $b^2 - 4ac > 0$, $r_1 \neq r_2$ and both are real. Our solution is $y = C_1e^{r_1x} + C_2e^{r_2x}$, which we call a \textbf{superposition}
+    \item If $b^2 = 4ac$ then $r_1 = r_2$ and our solution is $y = C_1e^{r_1x} + xe^{r_1x}$
+    \item Finally, if $b^2 - 4ac < 0$, both $r_1$ and $r_2$ are complex. Setting $q = 4ac - b^2$, our solution take the form $$y(x) = e^{\beta x} \left[ c_1 \cos(qx) + c_2 \sin(qx) \right]$$ If $p > 0$, the sine wave's amplitude increases; if $p < 0$, it decreases.
+\end{itemize}
+
+
+We also should summarize some basic facts about the trigonometric functions: \begin{itemize}
+    \item $\sin(x)$ has period $2\pi$ radians with zeroes located at $n\pi$ for $n \in \Z$.
+    \item In general, $\sin(\beta x)$ and $\cos(\beta x)$ have period $\frac{2\pi}{\beta}$.
+    \item For $L > 0$ and real, if we have $\sin(\frac{n\pi x}{L})$ and $\cos(\frac{n\pi x}{L})$, the period is $\frac{2\pi}{\frac{n\pi}{L}} = \frac{2L}{n}$ so $2L$ is the common period for any function of this form.
+\end{itemize}
+
+If we want to compute $$I = \int_{-L}^L \cos \left(\frac{n\pi x}{L}\right) \cos \left( \frac{m\pi x}{L} \right) dx$$ integrating by parts\footnote{$\int u dv = uv - \int v du$} with $$\begin{aligned}
+    u  =& \cos \left( \frac{n\pi x}{L} \right)\\
+    dv =& \cos \left( \frac{m\pi x}{L} \right)\\
+    du =& -\frac{n \pi}{L}\sin \left( \frac{n\pi x}{L} \right)\\
+    v  =& \int \cos \left( \frac{m \pi x}{L} \right) dx = \frac{L}{m \pi} \sin \left( \frac{m \pi x}{L} \right)
+\end{aligned}$$
+
+$$\begin{aligned}
+    I&=uv \bigg\rvert_{-L}^L -\frac{L}{m\pi}\int_{-L}^L \sin \left(\frac{m\pi x}{L} \right) \frac{-n\pi}{L} \sin \left( \frac{m\pi x}{L} \right) dx\\
+    &= \frac{n}{m} \int_{-L}^L \sin \left( \frac{n\pi x}{L} \right) \sin \left( \frac{m\pi x}{L} \right) dx = \frac{n}{m} \int_{-L}^L u dv\\
+    &= \frac{n^2}{m^2} \int_{-L}^L \cos \left( \frac{n\pi x}{L} \right) \cos \left( \frac{m\pi x}{L} \right) = \frac{n^2}{m^2}I
+\end{aligned}$$ So $I = \frac{n^2}{m^2} I$ implying $(m^2 - n^2)I = 0$. Either $m = n$ or $I = 0$, so $$\int_{-L}^L \cos\left( \frac{n\pi x}{L} \right) \cos\left( \frac{m\pi x}{L} \right) = 0$$ for $n = 1, 2, 3, \ldots$, $m = 1, 2, 3, \ldots$, and $m \neq n$
+
+\section{Fourier Series}
+
+$$f(x) \sim \frac{a_0}{2} \sum_{n=1}^{\infty} $$
+
+\section{Sturm-Liouville Problems}
+
+\subsection{Four Standard Cases}
+
+\begin{enumerate}
+    \item
+    \item
+    \item
+    \item
+\end{enumerate}
+
+\section{The 1-D Homogeneous Heat Equation}
+
+$$u_{t} = ku_{xx}$$
+
+\subsection{Derivation}
+
+\subsection{Solution}
+
+\section{n-Dimensional Heat Equation}
+
+$$u_t = k(\Delta u)$$ where $\Delta$ is the Laplacian operator given by $$(\Delta v)(x_1, ..., x_n) = \sum_{i = 1}^n v_{x_ix_i}$$
+
+\section{The Wave Equation}
+
+\subsection{1-Dimensional Case}
+
+$$u_{tt} = c^2u_{xx} + q(x,t)$$
+
+\subsubsection{Derivation}
+
+\subsubsection{Homogeneous Solution}
+
+When $q(x,t)$ is identically zero, we have the homogeneous equation $$u_{tt} = c^2u_{xx}$$
+
+\subsubsection{Non-homogeneous Solution}
+
+When $q(x,t)$ is not identically zero, the solution to
+$$u_{tt} = c^2u_{xx} + q(x,t)$$ is
+
+\subsection{On a Circular Membrane}
+
+\subsubsection{Solution}
+
+\subsection{n-Dimensional Case}
+
+$$u_{tt} = $$
+
+\subsubsection{Solution}
+
+
+\section{The Laplace Equation}
+
+\subsection{2-Dimensional Case}
+
+$$u_{xx} + u_{yy} = 0$$
+
+\subsubsection{Derivation}
+
+\subsubsection{Homogeneous Solution}
+
+\subsubsection{Non-homogeneous Solution}
+
+\subsection{n-Dimensional Case}
+
+\subsubsection{Solution}
+
+\section{Other Equations}
+
+\subsection{Brownian Motion}
+
+$$u_t(x, t) = au_{xx}(x,t) - bu_x(x, t)$$
+
+\subsection{Diffusion-Convection Problems}
+
+$$u_t(x, t) = ku_{xx}(x,t) - au_x(x, t)  bu(x,t)$$
+
+\subsection{Black-Scholes Equation}
+
+$$V_t(S, t) + \frac{1}{2}\sigma^2S^2V_{SS}(S,t) + rSV_S(S,t) - rV(S,t) = 0$$
+
+\subsection{Schrödinger Equation}
+
+Evolution of a Quantum State
+$$ih\psi_t(x,t) = -\frac{\hbar^2}{2m} $$
+
+\subsection{Klein-Gordon Equation}
+
+Motion of a Quantum Scalar Field
+
+$$\psi_{tt}(x,y,z,t) = c^2\Delta \psi(x,y,z,t)-\frac{m^2c^4}{\hbar^2}\psi(x,y,z,t) $$
+
+With $i^2 = -1$ and $c$ being the speed of light. In one dimension,
+
+$$u_{tt}(x,t) = c^2u_{xx}(x,t) - au(x,t)$$
+
+for constant $a > 0$.
+
+\subsection{Telegraph Equation}
+
+$$au_{tt}(x,t) + bu_t(x,t) + cu(x,t) = u_{xx}(x,t) $$
+
+\subsection{Dissipative Waves}
+
+$$ u_{tt}(x,t) + au_t(x,t) + bu(x,t) = c^2u_{xx}(x,t) - du_x(x,t) $$
+
+$a, b, d \geq 0$ not all 0 and $c > 0 $
+
+\subsection{Transverse Vibrations of a Rod}
+
+$$ u_{tt}(x,t) + c^2u_{xxxx}(x,t) = 0$$
+
+\subsection{Helmholtz Equation}
+
+$$ \Delta u(x,y,z) + k^2u(x,y,z) = 0 $$
+
+$$ \Delta u(x,y,z) - k^2u(x,y,z) = 0 $$
+
+\subsection{Steady-state Connective Heat}
+
+$$ \Delta u(x,y) - au_x(x,y) - bu_y(x,y) + cu(x,y) = 0 $$
+
+\subsection{Plane Problems in Continuum Mechanics}
+
+$$ \Delta\Delta u(x,y) = u_{xxxx}(x,y) + 2u_{xxyy}(x,y) + u_{yyyy}(x,y) = 0$$
+
+\subsection{Euler-Tricomi Equation}
+
+Plane Transonic Flow
+
+$$ u_{xx}(x,t) = xu_{xx}(x,t) $$
+
+where $u(x,t)$ is a function of speed.
+
+\subsection{Fisher Equation}
+
+Advance of advantageous genes in a population
+
+$$ u_t(x,t) = Du_{xx}(x,t) + ru(x,t)(1-u(x,t)) $$
+
+\subsection{Boussinesq Equation}
+
+Fluid dynamics
+
+$$ \eta_{tt}(x, t) - gh\eta_{xx}(x,t) - gh\left( \frac{2}{3h}\eta^2(x,t) + \frac{h^2}{3}\eta_{xx}(x,t) \right)_{xx} = 0  $$
+
+\subsection{Navier-Stokes Fluid Flow Equations}
+
+The Navier-Stokes fluid-flow equations are the system of partial differential equations given by $$\begin{aligned}
+    \nabla \cdot u &= 0\\
+    \rho \left(\frac{\partial u}{\partial t} + (u \cdot \nabla)u \right) &= -\nabla p + u\nabla^2 u + \rho F
+\end{aligned}$$ which model every known fluid. The first equation in the system represents the conservation of mass, and the second represents the conservation of momentum.
+
+
+\textbf{Millenium Problem (Navier-Stokes Existence and Smootheness)} Prove or give a counterexample to the following statement: in three space dimensions and time, given an initial velocity field, there exists a vector velocity and a scalar pressure field, which are both smooth and globally defined, that solve the Navier-Stokes equations.
+
+% The Clay Mathematics Institute offers a US\$1,000,000 prize  Before the Clay Mathematics Institute will consider a proposed solution, all three of the following conditions must be satisfied: \begin{enumerate}
+%    \item the proposed solution must be published in a Qualifying Outlet,
+%    \item at least two years must have passed since publication, and
+%    \item the proposed solution must have received general acceptance in the global mathematics community
+%\end{enumerate}
+
+
+
+\section{The Laplace Transform}
+
+The Laplace transform can be used to ``suppress'' the time variable $t > 0$ in a PDE; for one-dimensional equations, this yields an ordinary differential equation in $U(x,s)$ where $s$ is a constant.
+
+\section{The Fourier Transform}
+
+The Fourier transform can be used to ``suppress'' spatial variables $-\infty < x, y, z, \dots < \infty$ much the same way that the Laplace transform ``suppresses'' the time variable.
+
+\section{The Method of Green's Functions}
+
+\end{document}

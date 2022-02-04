@@ -1,0 +1,219 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{esint} % cyclic integrals
+\usepackage{amsfonts} % \mathbb
+\usepackage{mathtools}
+\usepackage{mathrsfs} % \mathscr
+\usepackage{latexsym}
+\usepackage{amssymb} % therefore
+\usepackage{hyperref} % allows hyperlinks, including in the table of contents
+\usepackage{imakeidx}
+\usepackage{verbatim} % begin{comment}
+\usepackage{ulem} %\uline, which allows linebreaks
+\usepackage[margin=0.8in]{geometry}
+\usepackage{xcolor}
+
+\setlength{\parindent}{0em}
+% \setlength{\parskip}{1em}
+
+\makeindex
+
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Curl}{Curl}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\title{Differential Equations Notes}
+\author{Sam Lowe}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+
+\section{Convolutions}
+
+If $f$ and $g$ are piecewise continuous functions for $t \geq 0$, then the convolution is the function defined over $t \geq 0$ by $$(f \star g)(t) = \int_0^t f(t-\tau)g(\tau)d\tau$$ If we substitute $u = t - \tau$, then $du = -d\tau$ and $$\int_0^t f(t-\tau)g(\tau)d\tau = \int_0^t g(t-u)f(u)du $$ so convolution is commutative; it's also easy to check that convolution is associative and distributes over addition.
+
+\section{The Laplace Transform}
+
+$\mathscr{L}[f(t) \star g(t)] = F(s)G(s)$ for $s > c$
+
+\section{Systems of Ordinary Differential Equations with Constant Coefficients}
+
+Systems of differential equations in which knowledge of one function is required to find other functions (and vice versa) are called \textbf{coupled}.
+
+\subsection{Systems of First-Order Equations}
+
+An arbitrary linear ordinary differential equation (or a system of linear ordinary differential equations) can be converted into a \uline{first order} system of linear differential equations \uline{by adding variables for all but the highest order derivatives.} We illustrate this in the case of a second-order linear differential equation: consider $$a(t)y'' + b(t)y' + c(t)y = f(t)$$ with $y(t_1) = r_1$ and $y'(t_2) = r_2$. Substitute $$\begin{aligned}
+    x_1(t) &= y\\
+    x_2(t) &= y'
+\end{aligned}$$ Differentiating both functions, we get $$\begin{aligned}
+    x_1' &= y' = x_2\\
+    x_2' &= y'' = -\frac{b(t)}{a(t)}y' - \frac{c(t)}{a(t)}y + f(t) = -\frac{b(t)}{a(t)}x_2  - \frac{c(t)}{a(t)}x_1 + f(t)
+\end{aligned}$$ with initial conditions given by $$\begin{aligned}
+    y_1(t_1) &= r_1\\
+    y_2(t_2) &= r_2
+\end{aligned}$$ We can write a system in of linear first-order ODEs $$\begin{aligned}
+    x_1' &= a(t)x_1 + b(t)x_2 + f_1(t)\\
+    x_2' &= c(t)x_1 + d(t)x_2 + f_2(t)
+\end{aligned}$$ in \textbf{matrix form} as $$\begin{pmatrix}
+    x_1'\\x_2'
+\end{pmatrix} = \begin{bmatrix}
+    a(t) & b(t)\\
+    c(t) & d(t)
+\end{bmatrix} \begin{pmatrix}
+    x_1\\x_2
+\end{pmatrix} + \begin{pmatrix}
+    f_1\\f_2
+\end{pmatrix}$$ or more compactly as $$\vec{x} \, ' = A(t) \vec{x} + \vec{f}(t) $$ This algorithm can be extended to decompose linear differential equations of arbitrary degree into systems of linear ordinary differential equations.
+
+We say a system of this form is \textbf{homogeneous} if $\vec{f}(t) = 0$, or \textbf{non-homogeneous} if $\vec{f}(t) \neq 0$.
+
+\begin{comment}
+Consider a linear system of first-order ordinary differential equations of the form $$\begin{aligned}
+\frac{dx_1}{dt}&=&f_1(x_1, \ldots, x_n, t)\\
+\frac{dx_2}{dt}&=&f_2(x_1, \ldots, x_n, t)\\
+\vdots\\
+\frac{dx_n}{dt}&=&f_n(x_1, \ldots, x_n, t)
+\end{aligned}$$ with initial conditions of the form $$ \begin{aligned} x_1(t_0) &= b_1\\ x_2(t_0) &= b_2\\ \vdots \\ x_n(t_0) &= b_n \end{aligned}$$ This system of equations is called a \textbf{first-order system}.
+
+Because all differential equations will have $t$ as the independent variable, we write $x_i'$ in place of $\frac{dx_i}{dt}$.
+
+Consider the initial value problem for a forced mechanical vibration: $$mx'' + cx' + kx = f(t), \quad x(0) = x_0, \quad x'(0) = v_0$$ Letting $x_1 = x$ and $x_2 = x'$, then this problem is equivalent to the first order system $$ \begin{array}{ll}
+x'_1 = x_2, & x_1(0) = x_0\\
+x'_2 = \frac{1}{m}\big(f(t) - cx_2 - kx_1 \big), & x_2(0) = v_0\\
+\end{array}$$ Similarly, mixing problems can also be expressed as first-order systems. Letting $r_0$ and $c_0$ denote the rate and concentrate of the solute in the inflow to tank 1 and let $r_j$ denote the rate of outflow from tank $j$ for $j = 1, 2$, then we get the first order system for the amounts of salt $$\begin{array}{ll}
+x'_1 = k_0 - k_1x_1\\
+x'_2 = k_1x_1 - k_2x_2
+\end{array}$$ where $k_0 = c_0r_0$, $k_1(t) = \frac{r_1}{V_1(t)}$ and $k_2(t) = \frac{r_2}{V_2(t)}$.
+
+Notice we can simplify the first system we examined by writing it in vector form. Let $x = (x_1, \ldots, x_n)$ and $f = (f_1, \ldots, f_n)$, then we can write the system and its initial conditions as $$\begin{array}{c}
+    \frac{dx}{dt} = f(x, t)\\
+    x(t_0) = x_0
+\end{array} $$ where we let $x_0 = (b_1, \ldots, b_n)$.
+\end{comment}
+
+\subsection{Existence and Uniqueness of Solutions to Systems}
+
+If a solution $x(t)$ exists, then it defines a curve in $n$-dimensional space starting at the point $x_0$. Let $f_x$ denote $\frac{\partial f_i}{\partial x_j}$ for $i, j = 1, \ldots, n$.
+
+\textbf{Theorem} Suppose $t_0$ is a fixed point on an interval $I = (a,b)$ and $x_0$ is a fixed point in $\R^n$ such that $f(x,t)$ and $f_x(x,t)$ are continuous for $a < t < b$ and $|x - x_0| < R$. Then there is a unique solution $x(t)$ of the above system of equations defined for $t$ for $|t - t_0| < \epsilon$ for $\epsilon > 0$.
+
+\textbf{Remark} Since the dependence of $f$ on $x$ might be nonlinear, the solution $x(t)$ need not be defined on all of $I$. When the system \textit{is} linear, we can guarantee that such a solution is defined on all of $I$:
+
+\textbf{Theorem} If $A(t)$ and $f(t)$ are continuous on an interval $I$ containing $t_0$, then the first-order linear system $x' = A(t)x + f(t)$ with initial condition $x(t_0) = b$ has a unique solution $x$ defined on $I$.
+
+\textbf{Remark} Note that linearity implies that existence and uniqueness hold on \textit{all} of the interval $I$, not just near $t_0$.
+
+\subsection{Autonomous Systems and Geometric Analysis}
+
+Like first-order equations, first-order systems are called \textbf{autonomous} if the function $f$ above does not depend on $t$: $$\frac{dx}{dt} = f(x)$$ Notice that $f$ is a vector field in $\R^n$. Moreover, a solution $x(t)$ of that system is a curve in $\R^n$ whose tangent vector at each point is given by the vector field at that point. By sketching the vector field and a few sample solution curves, we obtain a geometric insight into the behavior of systems of solutions of first-order autonomous systems. When $n=2$, such pictures are called \textbf{phase plane portraits}.
+
+Like first order autonomous equations, first-order autonomous systems admit equilibrium solutions and stability analysis. Values of $x_0$ for which $f(x_0)=0$ (i.e. solutions for which the vector field vanishes) are called \textbf{critical points}, and they correspond to \textbf{equilibrium solutions} if we let $x(t) = x_0$. The notion of \textbf{stability} for an equilibrium solution of a first-order system is similar to the case of a singe equation discussed earlier, but is sl
+
+An equilibrium solution $x_0$ for a the system above is \textbf{stable} if all ``nearby'' solutions remain ``nearby.'' This is certainly true if all nearby solutions approach $x_0$ (all nearby vectors in the vector field point to $x_0$), in which case such an equilibrium is called a \textbf{sink}. It's also possible for solutions to remain nearby by orbiting around the equilibrium; such an equilibrium is called a \textbf{center}.
+
+An equilibrium solution $x_0$ for the system is called \textbf{unstable} if at least some nearby solutions move away from $x_0$. This is certainly true if all nearby solutions move away from the equilibrium; such an equilibrium is called a \textbf{source}. However, for systems it could be that some solutions approach $x_0$ while others move away; such an equilibrium is called a \textbf{saddle}.
+
+In applications where initial conditions can only be approximated, an unstable equilibrium is of limited significance since a very small perturbation could yield an extremely different outcome. On the other hand, stable equilibria represent very important states of a physical system.
+
+\subsection{Theory of First-Order Linear Systems}
+
+As was the case for second-order equations, the solution of the nonhomogeneous system $x' = A(t)x + f(t)$ is closely connected with the associated homogeneous system $x' = A(t)x$. If $c_1$, $c_2$ are constants and $x_1$, $x_2$ are both solutions of the homogeneous system, then by linearity $c_1x_1 + c_2x_2$ is also a solution, so the homogeneous solution set forms a vector space.
+
+In fact, if the solutions $x_1, \ldots, x_n$ are linearly independent, then we want to show that \textit{every} solution is of the form $x(t) = c_1x_1(t) + \cdots + c_nx_n(t)$ for some choice of constants $c_1, \ldots, c_n$. As in previous sections, the linear dependence of functions is determined by the \textbf{Wronskian}.
+
+\subsubsection{The Wronskian}
+
+\textbf{Definition.} Let $\vec{x}_1, \ldots, \vec{x}_n$ be $n$-dimensional vector functions defined on an interval $I$. Define $$X = \begin{bmatrix} \vec{x}_1 & \cdots & \vec{x}_n \end{bmatrix}$$ to be the $n \times n$ matrix where the $i^{th}$ column is the $i^{th}$ vector. The \textbf{Wronskian} $W$ of $\vec{x}_1, \ldots, \vec{x}_n$ is the determinant $$W = \det(X)$$ of $X$.
+
+\textbf{Theorem} Let $\vec{x}_1, \ldots, \vec{x}_n$ be $n$-dimensional vector-valued functions on an interval $I$. Then if $\vec{x}_1, \ldots, \vec{x}_n$ are all solutions of the homogeneous system of first-order equations and $W[x_1, \ldots, x_n](t_0) = 0$ for some $t_0$ in $I$, then $x_1, \ldots, x_n$ are linearly dependent on $I$.
+
+\textbf{Theorem} If $A(t)$ is continuous on an interval $I$ and $x_1, \ldots, x_n$ are linearly independent solutions of the homogeneous system of first-order equations, then every solution of the homogeneous linear system is of the form $x(t) = c_1x_1(t) + \cdots + c_nx_n(t)$.
+
+\subsubsection{Structure of Solutions}
+
+\textbf{Theorem (Principle of Superposition for Solutions)} Let $\vec{x} \, ' = A(t)\vec{x} + \vec{f}(t)$. If $A(t)$ and $f(t)$ are continuous on an interval $I$ and $x_p$ is a particular solution of the nonhomogeneous linear system of first-order equations, then every solution of that system is of the form $$x(t) = x_p(t) + x_h(t)$$ where $x_h$ is the general solution of the homogeneous system and $x_p$ is the particular solution of the system.
+
+\subsection{Finding Solutions to Homogeneous Linear Systems}
+
+In this section we investigate the solution to $\vec{x} \, ' = A(t)\vec{x} + \vec{f}(t)$ when $A(t) = A$ is a constant matrix and $\vec{f}(t)$ is identically 0. This yields the homogeneous system of linear equations $$\vec{x} \, ' = A\vec{x}$$ and we can find the general solution $x_h$ of this homogeneous system via the \textbf{eigenvalue method}.
+
+First, notice that this system is autonomous, and  the trivial solution $x(t)=0$ is an equilibrium. If $A$ is invertible, then $0$ is the \textit{only} equilibrium solution.
+
+Let $\vec{x}\, ' = A\vec{x}$ where $A$ is an $n \times n$ matrix. Focusing on the $n = 1$ case, we get $x' = ax$ which has the solution $x(t) = ce^{at}$. Let's use this as a starting point for general $n$. Guess $\vec{x} = e^{\lambda t}\vec{v}$; plugging this into $\vec{x} \, ' = A \vec{x}$, we get $$(A - \lambda I)e^{\lambda t}\vec{v} = 0$$ We know that $e^{\lambda t}$ is nonzero for any $\lambda$ and $t$, so we must have $$(A -  \lambda I)\vec{v} = 0$$ So to be a solution, $\vec{v}$ must be an eigenvector of $A$ with associated eigenvalue $\lambda$.
+
+%\subsubsection{Real Eigenvalues}
+\begin{comment}
+Suppose that $\lambda$ is a real eigenvalue for $A$ with real eigenvector $\vec{v}$, and consider the vector function $$x(t) = e^{\lambda t}\vec{v}$$ Then $x' = \lambda e^{\lambda t}\vec{v}$ and $Ax = A(e^{\lambda t}\vec{v}) = e^{\lambda t}A\vec{v} = e^{\lambda t}\lambda\vec{v}$, so $e^{\lambda t}\vec{v}$ is a solution of $x' = Ax$.
+\end{comment}
+
+Note that for all values of $t$, $\vec{x}(t) = e^{\lambda t}\vec{v}$ lies on the ray passing through vector $\vec{v}$, so a solution of the form $e^{\lambda t}\vec{v}$ is called a \textbf{straight-line solution}. Moreover, if $\lambda < 0$, then $\lim_{t \to \infty} \vec{x}(t) = 0$, and if $\lambda > 0$, then $\vec{x}(t)$ tends away from 0 as $t \to \infty$, so \uline{the signs of the eigenvalues determines the stability of the equilibrium solution $\vec{x}(t) = 0$.}
+
+Our algorithm is as follows: if $A$ has $n$ linearly independent eigenvectors $v_1, \ldots, v_n$ with associated eigenvalues $\lambda_1, \ldots, \lambda_n \in \C$ (which need not be unique) then we have $n$ distinct solutions of $x' = Ax$ that are part of the special form $$x_1(t) = e^{\lambda_1 t}\vec{v}_1, \, \ldots, x_n = e^{\lambda_n t}\vec{v}_n$$ Moreover, the solutions are linearly independent because $$W[x_1, \ldots, x_n](t) = \det ([e^{\lambda_1 t}\vec{v}_1 \, \cdots \, e^{\lambda_n t}\vec{v}_n]) = e^{(\lambda_1 + \cdots + \lambda_n) t}\det ([\vec{v}_1 \cdots \vec{v}_n]) \neq 0$$ for any $t$.
+
+\subsubsection{Generating Real Solutions from Complex Eigenvalues}
+
+Suppose that the characteristic polynomial $p(\lambda)$ has a complex root $\lambda = \alpha + \beta i$ leading to a complex eigenvector $\vec{v}$. We know that $e^{\lambda t}\vec{v}$ is a solution, but if $A$ is real we might want a real solution -- particularly if we're dealing with real-world applications.
+
+We know that complex eigenvalues and eigenvectors for real-valued matrices come in complex conjugate pairs (because they come in pairs for real polynomials), so $w(t) = e^{\lambda t}\vec{v}$ and $\overline{w}(t) = e^{\overline{\lambda}t}\overline{\vec{v}}$ are linearly independent complex-valued solutions of $x' = Ax$.
+
+Decomposing $w(t)$ into its real and imaginary parts, we have $$w(t) = a(t) + ib(t) \quad \overline{w}(t) = a(t) - ib(t)$$ Knowing that a linear combination of solutions is a solution, we have $$a(t) = \frac{1}{2}\left(w(t) + \overline{w}(t)\right) \quad b(t) = \frac{1}{2i}\left(w(t) - \overline{w}(t) \right) $$ as two real-valued solutions of $x' = Ax$. Moreover, $a(t)$ and $b(t)$ are linearly independent because their span over $\C$ includes both $w(t)$ and $\overline{w}(t)$. We've can neatly express this as a theorem:
+
+\textbf{Theorem (Real Solutions from Complex Eigenvalues)} If $A$ is real constant $(n \times n)$ matrix with complex eigenvalue $\lambda$ and eigenvector $\vec{v}$, then the real and imaginary components of $w(t) = e^{\lambda t}\vec{v}$ are linearly independent real-valued solutions of $x' = Ax$: $$x_1(t) = \Re(w(t))\text{ and } x_2(t) = \Im(w(t))$$
+
+When $(\lambda, \vec{v})$ is a complex eigenpair, $w(t) = e^{\lambda t}\vec{v}$ isn't a straight-line solution because we've seen that their real-valued solutions circle the equilibrium in spirals or closed curves rather than moving in straight lines.
+
+\textbf{Theorem (Eigenbasis forms a Solution)} If $A$ is an $(n \times n)$ real constant matrix with eigenbasis $v_1, \ldots, v_n$ for $\R^n$, then the general solution of $x' = Ax$ is $$x(t) = c_1e^{\lambda_1 t}\vec{v}_1 + \ldots + c_ne^{\lambda_n t}\vec{v}_n$$ where $\lambda_1, \ldots, \lambda_n \in \C$ are the (not necessarily distinct) eigenvalues associated with $v_1, \ldots, v_n$.
+
+\subsubsection{Multiple Eigenvalues and Generalized Eigenvectors}
+
+Recall that a real eigenvalue may have algebraic multiplicity $m_a$ greater than its geometric multiplicity $m_g$. In this case, such an eigenvalue is called \textbf{defective} and its \textbf{defect} is $d = m_a - m_g$. When a matrix has a defective eigenvalue, it fails to have an eigenbasis, so we can't leverage the theorem above. % about the eigenbasis forming a solution
+
+To find a general solution to a homogeneous linear system of ordinary differential equations, we first define the \textbf{generalized eigenvector}:
+
+\textbf{Definition (Generalized Eigenvector)} If $A$ is a square matrix and $p$ is a positive integer, then a nonzero solution $v$ of $(A - \lambda I)^p\vec{v} = 0$ is called a \textbf{generalized eigenvector} for the eigenvalue $\lambda$.
+
+Eigenvectors correspond to the special case $p = 1$. If the above holds for $p > 1$, then it could hold for a smaller value of $p$. If we let $p_0$ denote the smallest possible integer for which the above holds, then $v_1 = (A - \lambda)^{p_0 - 1}\vec{v} \neq 0$ and satisfies $ (A-\lambda I)\vec{v}_1 = (A - \lambda)^{p_0}\vec{v} = 0$ so $v_1$ is an eigenvector for $\lambda$. In particular, we see that generalized eigenvectors for an eigenvalue $\lambda$ only exist when an actual eigenvector exists. When the eigenvalue is defective, we can use the generalized eigenvectors to find solutions of $x' = Ax$ by generalizing $x(t) = e^{\lambda t}\vec{v}$.
+
+In the specific case where $\lambda$ is an eigenvalue with $m_a = 2$ and $m_g = 1$, then two linearly independent solutions of $x' = Ax$ are \begin{itemize}
+    \item $x_1(t) = e^{\lambda t}\vec{v}_1$ where $v_1$ is an eigenvalue for $\lambda$
+    \item $x_1(t) = e^{\lambda t}(t\vec{v}_1 + \vec{v}_2$ where $(A-\lambda I)\vec{v_2} = v_1$
+\end{itemize} Note that $v_2$ is a generalized eigenvector for $\lambda$ since $(A - \lambda I)^2 \vec{v}_2 = 0$ although $(A - \lambda I) \vec{v}_2 \neq 0$. Because we define $v_1 = (A - \lambda I) \vec{v}_2$, we know that $\vec{v}_1 \neq \vec{0}$ and $(A - \lambda)\vec{v}_1 = 0$, so $v_1$ is an eigenvector and the equation $(A - \lambda I)v_2 = v_1$ is always solvable.
+
+\subsection{Finding Solutions to Non-homogeneous Linear Systems}
+
+In this section we investigate the solution to $\vec{x} \, ' = A(t)\vec{x} + \vec{f}(t)$ when $A(t) = A$ is a constant matrix but $\vec{f}(t)$ is nonzero and its components are functions of $t$. This non-homogeneous system of linear equations $$\vec{x} \, ' = A\vec{x} + \vec{f}(t)$$ We know that the general solution to this system will be of the form $$x(t) = x_p(t) + x_h(t)$$ We saw how to find $x_h$ in the preceding section, so now we focus on finding the particular solution $x_p$.
+
+The naive method for finding a solution is the \textbf{method of undetermined coefficients}. If we're given the system $$\vec{x} \, ' = A(t)\vec{x} + \vec{f}(t)$$ we can simply guess a solution based on what $f(t)$ is; the only difference being that the undetermined coefficients will be constant column vectors with undetermined entries. However, finding these undetermined coefficients is somewhat tedious. A more efficient method is the \textbf{method of variation of parameters}.
+
+\subsubsection{Method of Variation of Parameters}
+
+Let $$X = \begin{bmatrix} \vec{x}_1 & \cdots & \vec{x}_n \end{bmatrix}$$ to be the $n \times n$ matrix where the $i^{th}$ column is the $i^{th}$ solution vector to the homogeneous system $\vec{x} \, ' = A\vec{x}$. By definition, $X'(t) = AX(t)$; now when confronted with $$\vec{x} \, ' = A\vec{x} + \vec{f}(t)$$ we guess a solution of the form $$\vec{x_p} \, ' = X(t) \vec{v}$$ for some undetermined vector $\vec{v}$. Plugging this guess into the nonhomogeneous system and applying the product rule, we get $$\left(X(t) \vec{v}\right)' = X'(t) \vec{v} + X(t) \vec{v}\, ' = AX(t)\vec{v} + \vec{f}(t)$$ Knowing that $X'(t) = AX(t)$, we can rewrite this system in terms of $X$: $$\begin{aligned}
+    AX(t) \vec{v} + X(t) \vec{v}\, ' &= AX(t)\vec{v} + \vec{f}(t)\\
+    X(t)\vec{v}\,' &= \vec{f}(t)\\
+    \vec{v}' &= X^{-1}\vec{f}(t)
+\end{aligned}$$ We can be sure that $X^{-1}$ exists because the solutions that make up the column vectors of $X$ are linearly independent. Finally, $$\vec{v} = \int X^{-1} \vec{f}(t) \, dt $$ so we can neatly express $x_p$ in a short formula: $$\vec{x}_p = X \int X^{-1} \vec{f}(t) \, dt $$
+
+\subsubsection{Laplace Transform on Linear Systems of Equations}
+
+We can define the Laplace transform for matrices much the same way that we defined the derivative and integral operators, and solve systems of linear equations using Gauss-Jordan elimination.
+
+
+
+\pagebreak
+
+\printindex
+
+\end{document}

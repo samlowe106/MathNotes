@@ -1,0 +1,431 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{esint} % cyclic integrals
+\usepackage{amsfonts} % \mathbb
+\usepackage{mathtools}
+\usepackage{latexsym}
+\usepackage{amssymb} % therefore
+\usepackage{hyperref} % allows hyperlinks, including in the table of contents
+\usepackage{imakeidx}
+\makeindex
+
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Curl}{Curl}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\renewcommand{\C}{\mathbb{C}}
+
+\title{Linear Algebra Notes}
+\author{Sam Lowe}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+\section{Linear Systems and Matrices}
+
+\subsection{Gauss-Jordan Reduction}
+
+\subsection{Reduced Row-Echelon Form}
+
+\subsection{LU-Decomposition}
+
+The purpose of \textbf{LU-Decomposition} is to rewrite (or \textit{decompose}) a matrix $A$ as the product of a \textbf{L}ower-triangular matrix and an \textbf{U}pper-triangular matrix to
+
+\section{Matrix Operations}
+
+\subsection{Matrix Addition}
+
+\subsection{Matrix Multiplication}
+
+
+Row operations can be thought of as left-multiplication by an invertible matrix.
+
+This matrix can be found be performing the desired row operations on the identity matrix.
+
+Swapping the rows of the identity matrix yields a permutation matrix.
+
+\subsection{The Transpose}
+	
+\begin{itemize}
+\item $(A^{t})^{t}=A$
+\item $(A +B)^{t}=A^{t} + B^{t}$
+\item $(rA)^{t}=r(A^{t})$
+\item $(AB)^{t}=A^{t}B^{t}$
+\end{itemize}
+
+\section{Vectors and Vector Spaces}
+
+A \textbf{vector space over a field} is a set of objects, called \textbf{vectors}, which can be added together and multiplied by (or \textbf{scaled}) by an element of the field (that element is called a \textbf{scalar}). A vector space over $\R$ is usually called a \textbf{real vector space} and a vector space over $\C$ is usually called a \textbf{complex vector space}. For a vector space $V$ over a field $F$, the following properties hold: \begin{enumerate}
+\item \textbf{Additive Closure:} $u + v \in V$ for all $u,v \in V$
+
+\item \textbf{Additive Identity:} There exists some $0 \in V$, called the \textbf{zero vector}, such that $v + 0 = v$ for all $v \in V$
+
+\item \textbf{Additive Inverse:} For each $v \in V$, there exists some $-v \in V$ such that $v + (-v) = 0$
+
+\item \textbf{Associativity:} $u + (v + w) = (u + v) + w$ for all $u,v,w \in V$
+
+\item \textbf{Commutativity:} $u + v = v + u$ for all $u,v \in V$
+
+\item \textbf{Multiplicative Closure:} $av \in V$ for all $a \in F$ and all $v \in V$
+
+\item \textbf{Compatibility:} $a(bv) = (ab)v$ for all $a,b \in F$ and all $v \in V$
+
+\item \textbf{Multiplicative Identity:} $1v = v$ for all $v \in V$, where $1$ is the multiplicative identity of $F$
+
+\item \textbf{Distributivity Over Vector Addition:} $a(u + v) = au + av$ for all $a \in F$ and all $u,v \in V$
+
+\item \textbf{Distributivity Over Field Addition:} $(a + b)v = av + bv$ for all $a, b \in F$ and all $v \in V$
+\end{enumerate} The first five properties show that $V$ is an Abelian group under addition.
+
+The term vector is used in a broad sense to describe objects that can be added to each other and scaled by some field $F$. Some common examples of vectors are lists or tuples of numbers, lines in space, the complex numbers, matrices, and functions from any fixed set $S$ to a field $F$. Polynomials, continuous functions, integrable functions, and differentiable functions all form vector spaces. The solution space to a homogeneous linear differential equation (for example $y' = y$ or $y'' + 5y + 6y = 0$) is also a vector space. A vector $v$ is often denoted $\vec{v}$ in certain contexts.
+
+\subsection{Subspaces}
+
+A \textbf{subspace}, \textbf{linear subspace}, or \textbf{vector subspace} is a vector space that is a subset of some larger space. For example, if $V$ is a vector space over $F$ and $W \subset V$ is vector space over $F$ under the operations of $V$, then $W$ is a \textbf{subspace of} $\mathbf{V}$. All vector spaces have at least two subspaces, called the \textbf{trivial subspaces}: the vector space itself, and the \textbf{zero space} $= \{ \vec{0} \}$.
+
+Definition Direct Sum
+
+\subsection{Linear Dependence and Independence}
+
+\section{Basis}
+
+A \textbf{basis} for a vector space is a linearly independent set of vectors that spans that space. The number of vectors is always the same as the ---- of the vector space that it spans.
+
+\subsection{Orthogonal Bases and Orthogonal Projections}
+
+\section{Linear Transformations}
+
+A \textbf{linear transformation} (or \textbf{linear map})
+
+Any $m \times n$ matrix $A$ represents a linear transformation $A : \R^n \to \R^m$.
+
+Even when $A$ is a real matrix, the roots of its characteristic polynomial could be complex. If a given root $\lambda$ is complex, its associated eigenvectors are complex and therefore doesn't qualify as eigenvectors for $A : \R^n \to \R^n$; consequently, $\lambda$ doesn't qualify as an eigenvalue.
+
+However, if we allow complex solutions by consider $A$ to be a complex transformation $A : \C^n \to C^n$, then a complex root $\lambda$ is an eigenvalue because complex solutions are now valid eigenvectors.
+
+When $A$'s characteristic polynomial only has real coefficients, its complex roots come in complex conjugate pairs: $p(\lambda) = 0$ and $p(\overline{\lambda}) = 0$. Similarly, if $v$ is an eigenvector for $\lambda$, then $\overline{v}$ must also be an eigenvector because $$Av = \lambda v \leftrightarrow \overline{Av} = A\overline{v} = \overline{\lambda} \overline{v}$$ So we conclude that when $A$ is a square matrix with real entries, then $(\lambda, v)$ is an eigenpair if and only if $(\overline{\lambda}, \overline{v})$.
+
+\subsection{Operators}
+
+A linear map from a space $V$ to itself is called an \textbf{operator}. The notation $\mathcal{L}(V) = \mathcal{L}(V, V)$ denotes the set of all operators on $V$.
+
+For finite-dimensional vector spaces, a map is injective if and only if it is surjective.
+
+\subsection{Products and Quotients of Vector Spaces}
+
+Suppose $V_1, \ldots, V_m$ are vector spaces over $F$. Their product $V_1 \times \cdots \times V_m$ is defined by $\{ (v_1, \ldots, v_m) : v_1 \in V_1, \ldots, v_m \in V_m \}$. \begin{itemize}
+	\item Addition on $V_1 \times \cdots \times V_m$ is defined by $$(v_1, \ldots, v_m) + (u_1, \ldots, u_m) = (v_1 + u_1, \ldots, v_m + u_m)$$
+	\item Scalar multiplication on $V_1 \times \cdots \times V_m$ is defined by $$\lambda(v_1, \ldots, v_m) = (\lambda v_1, \ldots, \lambda v_m)$$
+\end{itemize} Clearly $V_1 \times \cdots \times V_m$ is a vector space.
+
+Theorem The dimension of a product is the sum of dimensions. Suppose $V_1, \ldots, V_m$ are finite-dimensional vector spaces. Then $V_1 \times \cdots \times V_m$ is finite-dimensional with $\dim\left(V_1 \times \cdots \times V_m\right) = \dim(V_1) + \cdots + \dim(V_m)$.
+
+Proof Consider the basis of each vector space. For each basis vector of each $V_j$, consider the element in $V_1 \times \cdots \times V_m$ that consists of only that basis vector in the $j$th slot and contains 0 (the appropriate additive identity element) in each other slot. The list of all such elements of $V_1 \times \cdots \times V_m$ is linearly independent and spans the space, and is thus a basis of length $\dim(V_1) + \cdots + \dim(V_m)$ as desired.
+
+Suppose that $U_1, \ldots, U_m$ are subspaces of $V$. Define a linear map $\Gamma : U_1 \times \cdots \times U_m \rightarrow U_1 + \ldots + U_m$ by $$\Gamma(u_1, \ldots, u_m) = u_1 + \cdots + u_m$$ Then $U_1 + \ldots + U_m$ if and only if $\Gamma$ is injective (equivalently, invertible).
+
+A sum is a direct 
+
+\section{Determinants}
+
+One interpretation of an $n \times n$ matrix is as a parallelogram in $\R^n$ with one of its vertices resting at the origin. The \textbf{determinant} of a matrix represents how much area (or volume) that matrix takes up. The determinant is only defined for square matrices.
+
+The formula for the determinant of a $2 \times 2$ matrix is $$
+|A| = \begin{vmatrix}
+a&b\\
+c&d\\
+\end{vmatrix} = ad - bc$$ and the formula for a $3 \times 3$ matrix is $$
+\begin{array}{rccccc}
+|A| = &\begin{vmatrix}
+a&b&c\\
+d&e&f\\
+g&h&i\\
+\end{vmatrix} & & & & \\
+= & a \begin{vmatrix}
+e&f\\
+h&i\\
+\end{vmatrix}
+& - &
+b \begin{vmatrix}
+d&f\\
+g&i\\
+\end{vmatrix}
+& + &
+c \begin{vmatrix}
+d&e\\
+g&h\\
+\end{vmatrix}\\
+= & a(ei-fh) & - & b(di-fg) & + & c(dh-eg)
+\end{array}
+$$ Each determinant of a $2 \times 2$ matrix in this equation is called a \textbf{minor} of the matrix $A$. The recursive extension of this formula for the determinant of an $n \times n$ matrix is known as \textbf{Laplace expansion.} 
+
+\subsection{Properties of the Determinant}
+
+For $n \times n$ matrices $A$ and $B$, \begin{itemize}
+\item $\det(AB) = \det(A)\det(B)$
+\item $\det(A^T) = \det(A)$
+\item $\det(A^{-1}) = \det(A)^{-1} = \frac{1}{\det(A)}$
+\item $\det(cA) = c^n \det(A)$
+\item If $A$ is triangular, then its determinant equals the product of its diagonal entries
+\item If any row or column in $A$ has all elements equal to zero, then $\det(A) = 0$
+\item If the rows or columns of $A$ are not linearly independent, $\det(A) = 0$
+\end{itemize} 
+
+\section{Eigenvalues and Eigenvectors}
+
+\section{Matrix Diagonalization}
+
+An $n \times n$ matrix $A$ is called \textbf{diagonalizable} if it has $n$ linearly independent eigenvectors, in which case we call those eigenvectors an \textbf{eigenbasis}.
+
+If $v_1, \ldots, v_k$ are eigenvectors for $A$ corresponding to distinct eigenvalues, then $v_1, \ldots, v_k$ are linearly independent. (Worldwide Differential Equations, p.188)
+
+If $n \times n$ matrix $A$ has $n$ distinct eigenvalues, then $A$ is diagonalizable. However, it is not necessary for $A$ to have distinct eigenvalues in order for it to be diagonalizable.
+
+A square matrix $A$ is diagonalizable if and only if the algebraic multiplicity $m_a(\lambda)$ and the geometric multiplicity $m_g(\lambda)$ are equal for each eigenvalue $\lambda$.
+
+These above results apply for both complex and real eigenvalues and eigenvectors.
+
+A square matrix has a basis of eigenvectors if and only if it is similar to a diagonal matrix.
+
+Similar matrices have the same eigenvalues and geometric multiplicities.
+
+\section{Symmetric Matrices}
+
+Recall that a square matrix is symmetric if $A^T = A$. Symmetric matrices are always diagonalizable.
+
+(Worldwide Differential Equations, Section 6.3 Page 193)
+
+If $A$ is a real symmetric $n \times n$ matrix, then: \begin{itemize}
+\item It is diagonalizable,
+\item All eigenvalues of $A$ are real,
+\item Eigenvectors corresponding to distinct eigenvalues are orthogonal,
+\item $A$ has a set of $n$ orthonormal vectors.
+\end{itemize} 
+
+Since a real symmetric matrix $A$ has all real eigenvalues, we can also take eigenvectors to be real. Consequently, we use $\R^n$ as our vector space and use the dot product to be the inner product of that space.
+
+\subsection{Orthogonal Matrices}
+
+A square real matrix $O$ is called orthogonal if $O^T = O^{-1}$.
+
+A real $n \times n$ matrix $O$ is orthogonal if and only if its column vectors form an orthonormal basis for $\R^n$.
+
+A real $n \times n$ matrix $O$ is orthogonal if and only if $|Ov| = |v|$ for all $v \in \R^n$. Proof: $$ |Ov|^2 = Ov \cdot Ov = O^TOv \cdot v = O^{-1} O v \cdot v = v \cdot v = |v|^2$$
+
+If $O$ is an orthogonal $n \times n$ matrix and $v, w$ are orthogonal vectors in $\R^n$, then $Ov$ and $Ow$ are orthogonal vectors in $\R^n$. Proof (p 197)
+
+...
+
+\section{Positive and Negative Definite Matrices}
+
+\section{Singular Value Decomposition}
+
+\section{To Be Sorted}
+
+The \textit{span} of a set $S$ of vectors, denoted $span(S)$, is the set of all linear combinations of those vectors. $span(S)$ forms vector space.
+
+
+	
+
+	
+
+	\subsection{Matrices}
+	
+	The entries of the product matrix $P$ of an $l \times m$ matrix $A$ and a $m \times n$ matrix $B$ are computed by multiplying the rows of $A$ by the columns of $B$. $p_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{im}b_{mj}$.
+	
+	The matrix
+	
+	$$
+	R(\theta )
+	=
+	\begin{bmatrix}
+	\cos{\theta} & -\sin{\theta} \\
+	\sin{\theta} &  \cos{\theta}
+	\end{bmatrix}
+	$$
+	
+	represents a $\theta$-radian counterclockwise turn about the origin in $\mathbb{R}^{2}$. The clockwise rotation matrix is given by
+	
+	$$
+	R(-\theta )
+	=
+	\begin{bmatrix}
+	 \cos{\theta} & \sin{\theta} \\
+	-\sin{\theta} & \cos{\theta}
+	\end{bmatrix}
+	$$
+	
+	This group of two-dimensional rotation matrices is commutative under multiplication; higher dimensional rotation matrices are not commutative.
+	
+
+	The \textit{row space} of a matrix $A$ is the span of the row vectors of $A$. The dimension of the row space is the number of independent rows.
+	
+
+	The nullspace of a matrix $A$, denoted $N(A)$, is the space of all vectors $v$ such that $Av=\vec{0}$. The nullspace is perpendicular to the row space, because for any row vector of $A$, the dot product of that row with $v$ will equal $0$.
+	
+	The column space of a matrix $A$, denoted $C(A)$, is the span of the column vectors of $A$. $C(A^{T})$ is the row space. The column space and row space of $A$ have the same dimension; that is to say that the number of independent rows that a matrix has is equal to the number of independent columns that the matrix has.
+	
+	The left nullspace of a matrix $A$, denoted $N(A^{T})$, is the space of all vectors $w$ such that $Aw=\vec{0}$. The left nullspace is perpendicular to the column space, because for any column vector of $A$, the dot product of that row with $v$ will equal $0$.
+	
+	\textbf{Theorem. (Rank-Nullity Theorem)}
+	
+	Let $V$, $W$ be vector spaces, where $V$ is finite dimensional. Let $T: V \to W$ be a linear transformation. Then $Rank(T) + Nullity(T) = dim(V)$.
+
+	\subsection{Determinants}
+	
+	
+	
+	A square matrix's rows are linearly independent if and only if its columns are also linearly independent. A square matrix's rows are linearly dependent if and only if its columns are also linearly dependent.
+	
+	The determinant of a triangular matrix is the product of the entries in its main diagonal. (Try computing it — every term beyond the first is guaranteed to be zero! Alternately, eliminate the non-leading entries, calculate the determinant, and then simplify.)
+	
+	For an $n \times n$ diagonal matrix $A$ raised to a power $m$,	
+	
+	$$
+	\begin{bmatrix}
+	a_{1,1} & 0       & \cdots & 0     \\
+	0       & a_{2,2} & \cdots & 0     \\
+	\vdots  & \vdots  & \ddots & \vdots\\
+	0       & 0       & \cdots & a_{n,n}\\
+	\end{bmatrix}^{m}	
+	=
+	\begin{bmatrix}
+	a_{1,1}^{m} & 0           & \cdots & 0          \\
+	0           & a_{2,2}^{m} & \cdots & 0          \\
+	\vdots      & \vdots      & \ddots & \vdots     \\
+	0           & 0           & \cdots & a_{n,n}^{m}\\
+	\end{bmatrix}$$
+	
+	
+	For invertible $n \times n$ matrices $A_{0}, A_{1}, ..., A_{n}$, the product $A_{0}A_{1}\cdots A_{n}$ is invertible. Additionally, $A_{0}^{-1}A_{1}^{-1}\cdots A_{n}^{-1}=(A_{0}A_{1}\cdots A_{n})^{-1}$.
+	
+	$det(A_{1}A_{2})=det(A_{1})det(A_{2})$
+	
+	The inverse of matrix is unique; $AA^{-1}=A^{-1}A=I$.
+	
+	If $A,B$ are $n \times n$ square matrices and $AB=I$, then $A$ and $B$ are invertible and $A=B^{-1}$.	
+	
+	
+
+	\textbf{Invertible Matrix Theorem}
+	
+	Let $A$ be an $n\times n$ square matrix, $X_{1}$ be a constant $n\times 1$ column matrix, and $Z_{1}$ be the $n\times 1$ zero matrix. The following statements are equivalent:
+	
+	\begin{itemize}
+	\item $A$ is invertible.
+	\item The reduced row-echelon form of $A=I$.
+	\item The unique solution to $B=AX_{1}$ is $X_{1}=A^{-1}B$.
+	\item The unique solution to $AX_{1}=Z_{1}$ is $X_{1}=Z^{1}$.
+	\end{itemize}
+
+	\textbf{Definition: Elementary} An $n\times n$ matrix $E$ is \textit{elementary} if it is the result of applying one of the three Gaussian row operations to the $n\times n$ identity matrix.
+	
+	The matrices which result from swapping the rows of the identity matrix are called \textit{permutation matrices}.
+	
+	The matrix which results from performing a row operation on a matrix $M$ is the same as the matrix which matrix which results from the product $EM$, where $E$ is the elementary matrix constructed by using that row operation on the identity matrix.
+	
+	\subsection{Linear Independence}
+
+	A set of vectors can be tested for linearly independence by putting the associated matrix into reduced row echelon form. If each variable $x_{1}, x_{2},\ldots x_{n}$ equals zero, then the system is linearly independent. If at least one of the variables is nonzero, the system is linearly dependent.
+	
+	A set of $n$ $n \times 1$ vectors can be shown to be independent if the determinant of the associated matrix is nonzero (equivalently, if the matrix's reduced row-echelon form is the identity matrix); if the determinant is zero (the matrix's reduced row-echelon form is not the identity matrix), then the vectors are linearly dependent. (This is because the column vectors are linearly independent if an only if the row vectors are linearly independent).
+
+	\subsection{Determinant}
+	
+	The identity matrix $$I_{n} =
+	\begin{pmatrix}
+	1      & 0      & \cdots & 0     \\
+	0      & 1      & \cdots & 0     \\
+	\vdots & \vdots & \ddots & \vdots\\
+	0      & 0      & \cdots & 1
+	
+	\end{pmatrix}$$ is an $n \times n$ square matrix with all diagonal entries equal to $1$ and all other entries equal to $0$.
+	
+	\subsection{Consequences of a Zero Determinant}
+	
+	
+	
+	\subsection{Row Operations as Matrices}
+	
+	A row operation on a matrix $A$ can be represented as left multiplication of $A$ by an invertible matrix.
+
+	\subsection{Eigenvalues and Eigenvectors}
+	
+	An eigenvector $\vec{v}$ of an $n\times n$ square matrix $A$ is a nonzero $n\times 1$ column vector satisfying the equation $A\vec{v} =\lambda\vec{v}$ for some scalar $\lambda \in \mathbb{C}$ (which is that eigenvector's associated eigenvalue). In other words, an eigenvector is a vector which is only scaled by its associated eigenvalue $\lambda$ (and therefore remain on its own span) when left-multiplied by the matrix $A$.
+	
+	The equation $A\vec{v} = \lambda\vec{v}$ can be rearranged to yield $(A - \lambda I)\vec{v} = \vec{0}$. If left-multiplied by $(A - \lambda I)^{-1}$, $\vec{v}=\vec{0}$ will be the only solution, so eigenvectors only exist if $A - \lambda I$ is not invertible; in other words, when
+	
+	$$det(A-\lambda I) = 0$$
+
+	% In the case of a 2 x 2 matrix with determinant zero, all vectors are squished onto a single line, and all the vectors that previously existed on that line will be scaled.
+
+	The eigenvalues of $A$ are the zeroes of this polynomial (which is the characteristic equation of $A$). The same eigenvalue may occur more than once; the \textit{multiplicity} of an eigenvalue is the number of times the eigenvalue appears as a root. Each eigenvalue $\lambda$ with multiplicity $m$ has a set of up to $m$ linearly independent eigenvectors; the span of this set of eigenvectors is called an \textit{eigenspace}. Every vector in that eigenspace is an eigenvector for $\lambda$. 
+	
+	 An eigenvalue with multiplicity $1$ is sometimes called \textit{simple}.
+
+	Eigenvalues can be substituted back into the eigenvalue equation $(A-\lambda I)$ to solve for the values of $x_{1}, x_{2}, \ldots x_{n}$ in the corresponding $n \times 1$ eigenvector.
+	
+	If $A$ is an $n \times n$ matrix with only real numbers and if $\lambda_{1} = a + bi$ is an eigenvalue with eigenvector $\vec{v}^{1}$ Then $\lambda_{2} = \overline{\lambda_{1}} = a - bi$ is also an eigenvalue and its eigenvector is the conjugate of $\vec{v}^{1}$.
+	
+	The characteristic equation of an $n \times n$ matrix $A$ will not have more than $n$ roots, so $A$ will have no more than $n$ eigenvalues and no more than $n$ eigenvectors. (These eigenvalues and eigenvectors can be duplicates).
+	
+	\subsection{Matrix Diagonalization}
+	
+	The relationship between an $n \times n$ matrix $A$, its eigenvalues, and its eigenvectors can be written:
+	
+	$$\begin{matrix}
+	A\vec{v}_{1}&=&\lambda_{1}\vec{v}_{1}\\
+	A\vec{v}_{2}&=&\lambda_{2}\vec{v}_{2}\\
+	& \vdots &\\
+	A\vec{v}_{n}&=&\lambda_{n}\vec{v}_{n}\\
+	\end{matrix}$$
+	
+	or equivalently in matrix form
+	$$A
+	\begin{bmatrix} \vec{v}_{1} & \vec{v}_{2} & \cdots & \vec{v}_{n} \end{bmatrix}
+	=
+	\begin{bmatrix} \lambda_{1}\vec{v}_{1} & \lambda_{2}\vec{v}_{2} & \cdots & \lambda_{n}\vec{v}_{n} \end{bmatrix}
+	= 
+	\begin{bmatrix} \vec{v}_{1} & \vec{v}_{2} & \cdots & \vec{v}_{n} \end{bmatrix}
+	\begin{bmatrix}
+	\lambda_{1} & 0           & \cdots & 0          \\
+	0           & \lambda_{2} & \cdots & 0          \\
+	\vdots      & \vdots      & \ddots & \vdots     \\
+	0           & 0           & \cdots & \lambda_{n}\\
+	\end{bmatrix}$$
+	Letting $P$ be the matrix of eigenvalues and $D$ be the matrix of eigenvectors, we can rewrite the above equation as $$A = PDP^{-1}$$
+	By raising both sides of this equation to some power arbitrary power $m$ and canceling values of $P$ and $P^{-1}$, we see $$A^{m} = PD^{m}P^{-1}$$
+	
+	It should be noted that there are other possible values of $P$ and $D$. However, this algorithm ensures that $D$ is diagonal, so we can exploit the fact that $$D^{m} =
+	\begin{bmatrix}
+	\lambda_{1}^{m} & 0               & \cdots & 0              \\
+	0               & \lambda_{2}^{m} & \cdots & 0              \\
+	\vdots          & \vdots          & \ddots & \vdots         \\
+	0               & 0               & \cdots & \lambda_{n}^{m}\\
+	\end{bmatrix}$$
+	
+	to find values for $\sin{D}$, $e^{D}$, and other functions that can be expressed via power series (and therefore calculate $\sin{A}$, $e^{A}$, etc).
+
+	\subsection{Dominant Eigenvectors}
+
+% https://www.dhruvonmath.com/2020/07/26/who-cares-about-eigenvectors/	
+	
+	An eigenvector is said to be \textit{dominant} if its eigenvalue is greater than the eigenvalues of the other eigenvectors.
+	
+	Consider a diagonalizable matrix $A$ with real-valued eigenvectors. Repeatedly multiplying a vector $v$ by $A$ will tend to ``pull" the product vectors towards $A$'s dominant eigenvector. This happens because the product vector can be expressed as a linear combination of $A$'s eigenvectors, and the dominant eigenvector will be increased the most (and therefore will grow faster and hold more weight in the final linear combination than the other eigenvectors).
+
+\pagebreak
+
+\printindex
+
+\end{document}

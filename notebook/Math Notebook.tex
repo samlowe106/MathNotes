@@ -1,0 +1,1216 @@
+\input{../preamble.tex}
+
+\usepackage[many]{tcolorbox}
+
+\begin{comment}
+\documentclass[12pt]{article}
+\usepackage[margin=1in,paperwidth=8.5in, paperheight=11in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts} % \mathbb
+\usepackage{amssymb}  % \therefore
+\usepackage{mathrsfs} % \mathscr
+\usepackage{graphicx} % \includegraphics
+\usepackage{fancyhdr} % \cfoot
+\usepackage{multicol}
+\usepackage{hyperref} % allows hyperlinks, including in the table of contents
+%\usepackage{unicode-math} % Uptheta
+
+%\newtheorem{theorem}{Theorem}
+%\newtheorem{proof}{Proof}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Span}{span}
+
+\newcommand{\definition}{\textbf{Definition.}}
+
+\cfoot{\thepage}
+\setlength{\parindent}{0in}
+\end{comment}
+
+%\includegraphics[width=, ]{FILEPATH} % supports png, jpg, gif, and pdf files. filename cannot have spaces
+
+% Taken from https://tex.stackexchange.com/a/282356
+\newtcolorbox{mybox}[1]{
+    tikznode boxed title,
+    enhanced,
+    arc=5mm,
+    interior style={white},
+    attach boxed title to top center= {yshift=-\tcboxedtitleheight/2},
+    fonttitle=\bfseries,
+    colbacktitle=white,coltitle=black,
+    boxed title style={size=normal,colframe=white,boxrule=0pt},
+    title={#1}}
+
+\begin{comment}
+% Trig Functions
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+\end{comment}
+
+\begin{document}
+
+\title{Math Reference Notebook}
+\author{Sam Lowe}
+\date{\today}
+\maketitle
+
+\pagebreak
+
+\tableofcontents % requires building twice
+
+\pagebreak
+
+\section{Notations and Definitions}
+
+\subsection{Functions}
+
+Let $S$ and $T$ be sets. A \textit{function} from $S$ into $T$ is a subset $F$ of $S \times T$ such that for each element $x \in S$ there is exactly one element $y \in T$ such that $(x, y) \in F$. The set $S$ is called the \textit{domain} of the function, and the set $T$ is called the \textit{codomain} of the function. The subset $\{y \in T | (x, y) \in F$ for some $x \in S \}$ of the codomain is called the \textit{image} of the function.
+
+Functions can satisfy the following properties:
+\begin{align*}
+\text{Surjective (Onto): }&\text{every image in the codomain is also in the range/image.}\\
+\text{Injective (One-to-one): }&\text{each element of the codomain is the image of at most one element in the domain.}\\
+\text{Bijectivity: (One-to-one correspondence) }&\text{both surjective and injective.}
+\end{align*}
+
+\pagebreak
+
+
+
+
+
+\section{Logic}
+\begin{tabular}{lrl}
+	\textbf{Implication} && $P \rightarrow Q$\\
+
+	\textbf{Negation} & $\neg$ & $(P \rightarrow Q)$\\
+
+	\textbf{Inverse} & $\neg$ & $P \rightarrow \neg Q$\\
+
+	\textbf{Converse} && $Q \rightarrow P$\\
+
+	\textbf{Contrapositive} & $\neg$ & $Q \rightarrow \neg P$\\
+
+	\textbf{Modus ponens} && Given $P \rightarrow Q$ and $P$, then $Q$.\\
+
+	\textbf{Modus tollens} && Given $P \rightarrow Q$ and $~Q$, then $~P$.\\
+
+	\textbf{Distributive law} && $P \vee (Q \wedge R) \equiv (P \vee Q) \wedge (P \vee R)$
+\end{tabular}
+
+\pagebreak
+
+
+
+
+
+\section{Elementary Algebra}
+
+\subsection{Sums}
+
+\subsubsection{Arithmetic Sums}
+
+\textbf{Arithmetic Sums} $S_n = \frac{n(t_{1} + t_{n})}{2}$
+
+\subsubsection{Geometric Sums}
+
+\textbf{Geometric Sums} $S_n = \frac{t_{1}(1-r^{n})}{1-r}$
+
+\subsection{Arithmetic of the Complex Numbers}
+
+Let $i^2 = -1$. For $z = a + bi$ for $a, b \in \R$, we have \begin{itemize}
+	\item $z = re^{i\theta}$ by Euler's formula
+	\item $z_1 + z_2 = (a_1 + b_1i) + (a_2 + b_2i) = (a_1 + a_2) + (b_1 + b_2)i$
+	\item $z_1 \times z_2 = (a+bi)(c+di) = (ac-bd)+(ad+bd)i = (r_1r_2) e^{i(\theta_1 + \theta_2)}$
+	\item $\Re (z) = a$
+	\item $\Im (z) = b$
+	\item $|z| = \sqrt{a^2 + b^2}$
+	\item $\overline{z} = a - bi$
+	\item $|\overline{z}| = |z|$
+	\item $\overline{z_1 + z_2} = \overline{z_1} + \overline{z_2}$
+	\item $z = r(\cos{\theta} + i\sin{\theta})$ for $z \neq 0$, $|z| = r \in \R^+$, and $\theta$ in radians. Each value of $\theta$ is called an argument of $z$, and the set of all such $\theta$ is denoted $\arg z$. The principal value of $\arg z$, denoted $\Arg{z}$, is the unique value of $\theta$ such that $\pi < \theta \leq \pi$
+	%\item $e^{i\theta} = \exp{i\theta} = \cos{\theta} + i\sin{\theta}$
+	\item $\arg{z_1z_2} = \arg{z_1} + \arg{z_2}$
+\end{itemize} The set of all complex numbers is the complex plane $\C = \{ a + bi \, | \, a, b \in \R, \, i^2 = -1 \}$ which is isomorphic to $\R^2$.
+
+\section{Combinatorics}
+
+\subsection{Permutations}
+
+$ _nP_k = \displaystyle{\frac{n!}{(n-k)!}}$
+
+\subsection{Combinations}
+
+$ _nC_k = \begin{pmatrix} n \\ k \end{pmatrix} = \displaystyle{\frac{n!}{k!(n-k)!}}$
+
+\textbf{Factorial} For $n \in \N$, $n! = n(n-1)! = n(n-1)(n-2) \times \cdots \times 0!$. $0! = 1$.
+
+$b^{xy}=(b^{x})^{y}$
+
+	\textbf{Binomial Theorem} For $x, y \in \C$, $$(x+y)^n = \sum_{k=0}^n \begin{pmatrix} n \\ k \end{pmatrix} x^{n-k}y^k = x^{n} + \begin{pmatrix} n \\ 1 \end{pmatrix} x^{n-1}y + \cdots + \begin{pmatrix} n \\ n-1 \end{pmatrix} xy^{n-1} + y^n $$
+
+	\subsection{$n$-dimensional Real Space, $\R^n$}
+
+	$\R^2$ is defined as the Cartesian product $$\R \times \R = \{ (a,b) \, | \, a, b \in \R \}$$ Higher dimensional real space is defined similarly: $$\R^3 = \{ (a, b, c) \, | \, a, b, c \in \R \}$$
+
+	\subsection{Complex Numbers}
+
+
+	\subsection{Partial Fractions}
+
+	Suppose we have a rational function $R(x) = \frac{p(x)}{q(x)}$. To perform a \textbf{partial fraction decomposition}, we perform the following: \begin{enumerate}
+		\item If $\deg p \geq \deg q$, we perform polynomial division to get $\deg p < deg q$.
+		\item We factor $q(x)$ into its linear and irreducible quadratic terms.\footnote{"Irreducible quadratic" means that the term does not contain any real linear factors. $x^2+1$ is irreducible, but $x^2-1$ is not because it can be factored as $(x-1)(x+1)$.}
+		\item Each factor of $q(x)$ of the form $(ax-b^k)$ contributes the following to the PFD: $$\frac{A_1}{(ax-b)} + \frac{A_2}{(ax-b)^2} + \cdots + \frac{A_k}{(ax-b)^k}$$
+		\item Each factor of $q(x)$ of the form $(ax^2 + bx + c)^k$ contributes the following to the PFD: $$\frac{A_1x + B_1}{ax^2+bx+c} + \frac{A_2x + B_2}{(ax^2+bx+c)^2} + \cdots + \frac{A_kx + B_k}{(ax^2+bx+c)^k}$$
+		\item Once we have the correct form of the partial fraction decomposition, we recombine over the common denominator to evaluate the constants. Clearing the denominators, plugging in the roots of the various polynomial terms, and then evaluating the resulting simplified expression is one method to determine the unknown constants.
+	\end{enumerate}
+
+	\subsection{Polynomials}
+
+	By the \textbf{fundamental theorem of algebra}, any nonconstant polynomial of degree $n$ is guaranteed to have $n$ roots (though these roots need not be unique). There exist equations to solve polynomials up to degree 4 by radicals; polynomials of degree 5 or higher cannot be solved by radicals. The \textbf{Quadratic Equation} is as follows: $$x = \displaystyle{\frac{-b\pm \sqrt{b^{2}-4ac}}{2a}}$$ General formulas for cubic and quintic equations exist, but these formulas are exceptionally difficult to evaluate by hand. Several identities for quadratics and cubics are below: $$\begin{array}{rl}
+		a^2 + 2ab + b^2&= (a+b)^2\\\\
+		a^2 - 2ab + b^2&= (a-b)^2\\\\
+		a^2 - b^2&= (a+b)(a-b)\\\\
+		a^3 + b^3&= (a+b)(a^2 - ab + b^2)\\\\
+		&= (a+b)(a-b)^2\\\\
+		a^3 - b^3&= (a-b)(a^2 + ab + b^2)\\\\
+		&= (a-b)(a+b)^2
+	\end{array}$$
+
+\subsection{Logarithms}
+
+\begin{mybox}{Logarithms}
+\begin{center}
+
+Where $x, y$ are positive reals, $c, d$ are real, and $b$ is a positive real not equal to 1:
+$$\begin{array}{lclcl}
+\log_b (xy)                    & = & \log_b (x) + \log_{b}{y}     & \text{ because } & b^c \cdot b^d = b^{c+d}      \\\hline
+\log_b{\big(\frac{x}{y} \big)} & = & \log_b (x) - \log_{b}{y}     & \text{ because } & \frac{b^c}{b^d} = b^{c-d}    \\\hline
+\log_b{\big(x^d \big)}         & = & d\log_b (x)                  & \text{ because } & (b^c)^d = b^{cd}             \\\hline
+\log_b{\big(\sqrt[y]{x} \big)} & = & \frac{\log_b (x) }{y}        & \text{ because } & \sqrt[x]{y} = x^{\frac{1}{y}}\\\hline
+x^{\log_b (y)}                 & = & y^{\log_b (x) }              &                  &                              \\\hline
+\log_b (a)                     & = & \frac{\log_x (a)}{\log_x (b)}&                  &                              \\\hline
+\log_b{\frac{1}{y}}            & = &\log_b (y^{-1}) = -\log_b (y) &                  &                              \\
+\end{array}$$
+\end{center}
+\end{mybox}
+
+\pagebreak
+
+
+
+
+
+\section{Trigonometry}
+
+\subsection{Definitions}
+
+\begin{center}
+
+\begin{tabular}{c|c|c|c|c|c}
+
+$f(x)$    & Range    & Period & L. Minima & L. Maxima & Zeroes \\ \hline
+
+$\sin{x}$ & $[-1,1]$ & $2\pi$ & $\frac{3\pi}{2} + 2\pi n$ & $\frac{\pi}{2} + 2\pi n$ & $\pi n$\\ \hline
+
+$\cos{x}$ & $[-1,1]$ & $2\pi$ & $\pi + 2\pi n$ & $2\pi n$ & $\frac{\pi}{2} + \pi n$ \\ \hline
+
+$\tan{x}$ & $\mathbb{R}$ & $\pi$ &  &  & $\frac{\pi}{2} + \pi n$\\ \hline
+
+$\csc{x}$ & $[-\infty , -\frac{\pi}{2}] \cup [\frac{\pi}{2},\infty ]$ & $2\pi$ & $\frac{\pi}{2} + 2\pi n$ & $\frac{3\pi}{2} + 2\pi n$ & \\ \hline
+
+$\sec{x}$ & $[-\infty , -\frac{\pi}{2}] \cup [\frac{\pi}{2},\infty ]$ & $2\pi$ & $2\pi n$ &  $\pi + 2\pi n$ & \\ \hline
+
+$\cot{x}$ & $\mathbb{R}$ & $\pi$ & & & $\frac{\pi}{2} + \pi n$
+
+% $\sin{x}$ & $\mathbb{R}$ & $[-1,1]$ & $2\pi$ & $\frac{3\pi}{2} + 2\pi n$ & $\frac{\pi}{2} + 2\pi n$ & $\pi n$\\ \hline
+
+% $\cos{x}$ & $\mathbb{R}$ & $[-1,1]$ & $2\pi$ & $\pi + 2\pi n$ & $2\pi n$ & $\frac{\pi}{2} + \pi n$ \\ \hline
+
+% $\tan{x}$ & $\{x \in \mathbb{R} | x \neq \frac{\pi}{2} + \pi n\}$ & $\mathbb{R}$ & $\pi$ &  &  & $\frac{\pi}{2} + \pi n$\\ \hline
+
+% $\csc{x}$ &  $\{x \in \mathbb{R} | x \neq \pi n \}$ & $[-\infty , -\frac{\pi}{2}] \cup [\frac{\pi}{2},\infty ]$ & $2\pi$ & $\frac{\pi}{2} + 2\pi n$ & $\frac{3\pi}{2} + 2\pi n$ & \\ \hline
+
+% $\sec{x}$ & $\{x \in \mathbb{R} | x \neq \pi n \}$ & $[-\infty , -\frac{\pi}{2}] \cup [\frac{\pi}{2},\infty ]$ & $2\pi$ & $2\pi n$ &  $\pi + 2\pi n$ & \\ \hline
+
+% $\cot{x}$ & $\{x \in \mathbb{R} | x \neq \frac{\pi}{2} + \pi n \}$ & $\mathbb{R}$ & $\pi$ & & & $\frac{\pi}{2} + \pi n$
+
+\end{tabular}
+\end{center}
+
+By Taylor series, $\sin{x}$ and $\cos{x}$ can be related to $\exp{(ix)} = e^{ix}$ to derive \textbf{Euler's Formula}: $$e^{ix} = \cos{(x)} + i\sin{(x)}$$ So for real $x$, $\cos{x} = \Re{(e^{ix})}$ and $\sin{x} = \Im{(e^{ix})}$.
+
+\begin{center}
+	$\begin{array}{ccllc}
+		\sin{x} =& \frac{\text{opp}}{\text{hyp}} =& \frac{e^{ix}-e^{-ix}}{2i} =& \sum_{n=0}^{\infty} \frac{(-1)^{n}x^{2n+1}}{(2n+1)!} &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots\\
+		\cos{x} =& \frac{\text{adj}}{\text{hyp}} =& \frac{e^{ix}+e^{-ix}}{2} =& \sum_{n=0}^{\infty} \frac{(-1)^{n}x^{2n}}{(2n)!} &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots\\
+		\tan{x} =& \frac{\text{opp}}{\text{adj}} =& \frac{\sin{x}}{\cos{x}}&
+		%\csc{x} = \displaystyle{\frac{1}{\sin{x}}}\\
+		%\sec{x} = \displaystyle{\frac{1}{\cos{x}}}
+		%\cot{x} = \displaystyle{\frac{1}{\tan{x}}} = \displaystyle{\frac{\cos{x}}{\sin{x}}}
+	\end{array}$
+\end{center}
+
+\begin{multicols}{2}
+
+\subsection{Euler's Formula}
+$e^{ix} = \cos{x} + i\sin{x}$
+
+\subsection{de Moivre's Formula}
+$(\cos{\theta} + i\sin{\theta})^n = \cos{(n\theta)} + i\sin{(n\theta)}$ for $n \in \Z$
+
+\subsection{Pythagorean Identities}
+$$\begin{aligned}
+\sin^2{x}+\cos^2{x}&= 1\\
+\sec^2{x}-\tan^2{x}&= 1\\
+\csc^2{x}-\cot^2{x}&= 1
+\end{aligned}$$
+
+\subsection{Sum Identities}
+$$\begin{aligned}
+\sin{x+y}=&\sin{x}\cos{y} + \cos{x}\sin{y}\\
+\cos{x+y}=&\cos{x}\cos{y} - \sin{x}\sin{y}\\
+\tan{x+y}=&\frac{\tan{x}+\tan{y}}{1-\tan{x}\tan{y}}
+\end{aligned}$$
+
+\subsection{Difference Identities}
+\begin{align*}
+\sin{x-y}=&\sin{x}\cos{y} - \cos{x}\sin{y}\\
+\cos{x-y}=&\cos{x}\cos{y} + \sin{x}\sin{y}\\
+\tan{x-y}=&\frac{\tan{x}-\tan{y}}{1+\tan{x}\tan{y}}
+\end{align*}
+
+\subsection{Double Angle Identities}
+\begin{align*}
+\sin{2x}=&2\sin{x}\cos{x}\\
+\cos{2x}=&\cos^{2}{x}\sin^{2}{x}=2\cos^{2}{x} - 1\\
+\tan{2x}=&\frac{2\tan{x}}{1-\tan^{2}{x}}
+\end{align*}
+
+\subsection{Half Angle Identities}
+\begin{align*}
+\sin^{2}{x}=&\frac{1-\cos{2x}}{2}\\
+\cos^{2}{x}=&\frac{1+\cos{2x}}{2}\\
+\tan{\frac{x}{2}}=&\frac{\sin{x}}{1+\cos{x}}
+\end{align*}
+
+\subsection{Cofunction Identities}
+\begin{align*}
+\sin{\frac{\pi}{2} - x}&=\cos{x}\\
+\cos{\frac{\pi}{2} - x}&=\sin{x}\\
+\tan{\frac{\pi}{2} - x}&=\cot{x}\\
+\cot{\frac{\pi}{2} - x}&=\tan{x}\\
+\sec{\frac{\pi}{2} - x}&=\csc{x}\\
+\csc{\frac{\pi}{2} - x}&=\sec{x}\\
+\end{align*}
+
+\subsection{The Law of Sines and the Law of Cosines}
+$\displaystyle{\frac{\sin{A}}{a} = \frac{\sin{B}}{b} = \frac{\sin{C}}{c}}$
+
+$c^{2} = a^{2} + b^{2} - 2ab\cos{C}$
+
+\end{multicols}
+
+\subsection{Conic Sections}
+
+\begin{tabular}{c|c}
+Circle & $(x-h)^{2} + (y-k)^{2} = r^{2}$\\ \hline
+Ellipse & $\frac{x^{2}}{a^{2}} + \frac{y^{2}}{b^{2}} = 1$\\ \hline
+Parabola & $x^{2} + y^{2} = r^{2}$\\ \hline
+Hyperbola & $\frac{(x-h)^{2}}{a^{2}} - \frac{(y-k)^{2}}{b^{2}} = 1$
+\end{tabular}
+
+\pagebreak
+
+
+
+
+
+\section{Group Theory}
+
+\begin{mybox}{Groups}
+
+A group is a tuple $(G, *)$ of a set of elements $G$ and an operation $*$ which satisfies these properties:
+\begin{align*}
+\text{Closure: }&x,y \in G \rightarrow x * y \in G\\
+\text{Associativity: }&x,y,z \in G \rightarrow x * (y * z) = (x * y) * z\\
+\text{Identity: }&\exists (e \in G) \forall (x \in G) (x * e = x)\\
+\text{Invertibility: }&\forall (x \in G) \exists (x^{-1} \in G) \text{ such that } x * x^{-1} = e
+\end{align*} We often denote $G = (G, *)$.
+
+A group is \textit{commutative} (or \textit{Abelian}) if its operation $*$ also satisfies the commutative property $ x,y \in G \rightarrow x * y = y * x$.
+
+\end{mybox}
+
+\begin{mybox}{Rings}
+
+A ring $R$ is a commutative group under some operation $+$ (``addition'') and a second operation $\times$ (``multiplication'') which satisfies these properties:
+\begin{align*}
+\text{Closure: }&x,y \in R \rightarrow x \times y \in R\\
+\text{Associativity: }&x,y,z \in R \rightarrow x \times (y \times z) = (x \times y) \times z\\
+\text{Distributivity: }&a\times (b + c) = a \times b + a \times c
+\end{align*}
+
+Most definitions of a ring include the property
+
+$$\text{Identity: }\exists (1 \in R) \forall (x \in R) (x \times 1 = x)$$
+
+Rings with commutative multiplication are called \textit{commutative rings}.
+
+Rings that have multiplicative inverses are called \textit{division rings} or \textit{skew fields}, because the division operation $\div$ can be defined such that $a \div b = a \times b^{-1}$.
+
+Commutative division rings are called \textit{fields}.
+
+The \textit{center} of a noncommutative ring is the subring of elements $c$ such that $cx=xc$ for all $x\in R$.
+
+\end{mybox}
+
+\pagebreak
+
+
+
+\section{Linear Algebra}
+
+\subsection{Vector Spaces}
+
+\begin{mybox}{Vector Spaces}
+
+A vector space is a set of vectors $V$ over a field $F$ satisfying the following properties for all $v, u, w \in V$ and all $s, t \in F$:
+
+\begin{itemize}
+	\item Closure under vector addition: $v + w \in V$
+	\item Associative vector addition: $v + (u + w) = (v + u) + w$
+	\item Zero vector: $\vec{0} \in V$ such that $v + \vec{0} = v$, $u + \vec{0} = u$
+	\item Inverse vectors: $\forall v \in V \exists -v \in V$ such that $v + -v = \vec{0}$
+	\item Scalar multiplication: $s \times v \in V$
+	\item Associative scalar multiplication: $s \times (t \times v) = (s \times t) \times v$ for $s, t \in F$ and $v \in V$
+	\item Identity scalar: $1 \in F$ such that $1 \times v = v$, $1 \times u = u$
+	\item Distribution of scalar multiplication over vector addition: $s \times (v+u) = s \times v + s \times u$
+	\item Distribution of scalar multiplication over field addition: $(s + t) \times v = s \times v + t \times v$
+\end{itemize}
+
+The members of $V$ are called \textit{vectors} and the members of $F$ are called \textit{scalars}. The first four properties of vector spaces satisfy the four properties of groups.
+
+\end{mybox}
+
+\begin{mybox}{Span}
+
+The \textit{span} of a set $S$ of vectors, denoted $\Span{S}$, is the set of all linear combinations of those vectors. $\Span{S}$ forms vector space.
+
+\end{mybox}
+
+\begin{mybox}{Subspace}
+
+If $V$ is a set of vectors that forms a vector space, $W \subset V$, and $W$ also forms a vector space, then $W$ is a \textit{subspace}.
+
+\end{mybox}
+
+\begin{mybox}{Basis}
+
+A \textit{basis} for a vector space is a linearly independent set of vectors that spans that space.
+
+\end{mybox}
+
+\subsection{Matrices}
+
+The entries of the product matrix $P$ of an $l \times m$ matrix $A$ and a $m \times n$ matrix $B$ are computed by multiplying the rows of $A$ by the columns of $B$. $p_{ij} = a_{i1}b_{1j} + a_{i2}b_{2j} + \cdots + a_{im}b_{mj}$.
+
+The matrix
+
+$$
+R(\theta )
+=
+\begin{bmatrix}
+\cos{\theta} & -\sin{\theta} \\
+\sin{\theta} &  \cos{\theta}
+\end{bmatrix}
+$$
+
+represents a $\theta$-radian counterclockwise turn about the origin in $\mathbb{R}^{2}$. The clockwise rotation matrix is given by
+
+$$
+R(-\theta )
+=
+\begin{bmatrix}
+	\cos{\theta} & \sin{\theta} \\
+-\sin{\theta} & \cos{\theta}
+\end{bmatrix}
+$$
+
+This group of two-dimensional rotation matrices is commutative under multiplication; higher dimensional rotation matrices are not commutative.
+
+\begin{mybox}{Row Space}
+
+The \textit{row space} of a matrix $A$ is the span of the row vectors of $A$. The dimension of the row space is the number of independent rows.
+
+\end{mybox}
+
+\begin{mybox}{Nullspace}
+
+The nullspace of a matrix $A$, denoted $N(A)$, is the space of all vectors $v$ such that $Av=\vec{0}$. The nullspace is perpendicular to the row space, because for any row vector of $A$, the dot product of that row with $v$ will equal $0$.
+
+\end{mybox}
+
+\begin{mybox}{Column Space}
+
+The column space of a matrix $A$, denoted $C(A)$, is the span of the column vectors of $A$. $C(A^{T})$ is the row space. The column space and row space of $A$ have the same dimension; that is to say that the number of independent rows that a matrix has is equal to the number of independent columns that the matrix has.
+
+\end{mybox}
+
+\begin{mybox}{Left Nullspace}
+
+The left nullspace of a matrix $A$, denoted $N(A^{T})$, is the space of all vectors $w$ such that $Aw=\vec{0}$. The left nullspace is perpendicular to the column space, because for any column vector of $A$, the dot product of that row with $v$ will equal $0$.
+
+\end{mybox}
+
+\begin{mybox}{Rank-Nullity Theorem}
+
+Let $V$, $W$ be vector spaces, where $V$ is finite dimensional. Let $T: V \to W$ be a linear transformation. Then $Rank(T) + Nullity(T) = dim(V)$.
+
+\end{mybox}
+
+\subsection{Determinants}
+
+$$\begin{bmatrix}
+a & b\\
+c & d
+\end{bmatrix}^{-1}
+=
+\frac{1}{ad-bc}
+\begin{bmatrix}
+d & -b\\
+-c & a
+\end{bmatrix}
+$$
+
+A square matrix's rows are linearly independent if and only if its columns are also linearly independent. A square matrix's rows are linearly dependent if and only if its columns are also linearly dependent.
+
+The determinant of a triangular matrix is the product of the entries in its main diagonal. (Try computing it — every term beyond the first is guaranteed to be zero! Alternately, eliminate the non-leading entries, calculate the determinant, and then simplify.)
+
+For an $n \times n$ diagonal matrix $A$ raised to a power $m$,
+
+$$
+\begin{bmatrix}
+a_{1,1} & 0       & \cdots & 0     \\
+0       & a_{2,2} & \cdots & 0     \\
+\vdots  & \vdots  & \ddots & \vdots\\
+0       & 0       & \cdots & a_{n,n}\\
+\end{bmatrix}^{m}
+=
+\begin{bmatrix}
+a_{1,1}^{m} & 0         & \cdots & 0        \\
+0           & a_{2,2}^m & \cdots & 0        \\
+\vdots      & \vdots    & \ddots & \vdots   \\
+0           & 0         & \cdots & a_{n,n}^m\\
+\end{bmatrix}$$
+
+
+For invertible $n \times n$ matrices $A_0, A_1, ..., A_n$, the product $A_0A_1\cdots A_n$ is invertible. Additionally, $A_0^{-1}A_1^{-1}\cdots A_n^{-1}=(A_0A_1\cdots A_n)^{-1}$.
+
+$det(A_{1}A_{2})=det(A_{1})det(A_{2})$
+
+The inverse of matrix is unique; $AA^{-1}=A^{-1}A=I$.
+
+If $A,B$ are $n \times n$ square matrices and $AB=I$, then $A$ and $B$ are invertible and $A=B^{-1}$.
+
+\textbf{Properties of the Transpose}
+
+\begin{itemize}
+\item $(A^{t})^{t}=A$
+\item $(A +B)^{t}=A^{t} + B^{t}$
+\item $(rA)^{t}=r(A^{t})$
+\item $(AB)^{t}=A^{t}B^{t}$
+\end{itemize}
+
+\textbf{Invertible Matrix Theorem}
+
+Let $A$ be an $n\times n$ square matrix, $X_{1}$ be a constant $n\times 1$ column matrix, and $Z_{1}$ be the $n\times 1$ zero matrix. The following statements are equivalent:
+
+\begin{itemize}
+\item $A$ is invertible.
+\item The reduced row-echelon form of $A=I$.
+\item The unique solution to $B=AX_{1}$ is $X_{1}=A^{-1}B$.
+\item The unique solution to $AX_{1}=Z_{1}$ is $X_{1}=Z^{1}$.
+\end{itemize}
+
+\textbf{Definition: Elementary} An $n\times n$ matrix $E$ is \textit{elementary} if it is the result of applying one of the three Gaussian row operations to the $n\times n$ identity matrix.
+
+The matrices which result from swapping the rows of the identity matrix are called \textit{permutation matrices}.
+
+The matrix which results from performing a row operation on a matrix $M$ is the same as the matrix which matrix which results from the product $EM$, where $E$ is the elementary matrix constructed by using that row operation on the identity matrix.
+
+
+\subsection{Linear Independence}
+
+A set of vectors can be tested for linearly independence by putting the associated matrix into reduced row echelon form. If each variable $x_{1}, x_{2},\ldots x_{n}$ equals zero, then the system is linearly independent. If at least one of the variables is nonzero, the system is linearly dependent.
+
+A set of $n$ $n \times 1$ vectors can be shown to be independent if the determinant of the associated matrix is nonzero (equivalently, if the matrix's reduced row-echelon form is the identity matrix); if the determinant is zero (the matrix's reduced row-echelon form is not the identity matrix), then the vectors are linearly dependent. (This is because the column vectors are linearly independent if an only if the row vectors are linearly independent).
+
+\subsection{Determinant}
+
+The identity matrix $$I_{n} =
+\begin{pmatrix}
+1      & 0      & \cdots & 0     \\
+0      & 1      & \cdots & 0     \\
+\vdots & \vdots & \ddots & \vdots\\
+0      & 0      & \cdots & 1
+
+\end{pmatrix}$$ is an $n \times n$ square matrix with all diagonal entries equal to $1$ and all other entries equal to $0$.
+
+\subsection{Consequences of a Zero Determinant}
+
+
+
+\subsection{Row Operations as Matrices}
+
+A row operation on a matrix $A$ can be represented as left multiplication of $A$ by an invertible matrix.
+
+\subsection{Eigenvalues and Eigenvectors}
+
+An eigenvector $\vec{v}$ of an $n\times n$ square matrix $A$ is a nonzero $n\times 1$ column vector satisfying the equation $A\vec{v} =\lambda\vec{v}$ for some scalar $\lambda \in \mathbb{C}$ (which is that eigenvector's associated eigenvalue). In other words, an eigenvector is a vector which is only scaled by its associated eigenvalue $\lambda$ (and therefore remain on its own span) when left-multiplied by the matrix $A$.
+
+The equation $A\vec{v} = \lambda\vec{v}$ can be rearranged to yield $(A - \lambda I)\vec{v} = \vec{0}$. If left-multiplied by $(A - \lambda I)^{-1}$, $\vec{v}=\vec{0}$ will be the only solution, so eigenvectors only exist if $A - \lambda I$ is not invertible; in other words, when
+
+$$det(A-\lambda I) = 0$$
+
+% In the case of a 2 x 2 matrix with determinant zero, all vectors are squished onto a single line, and all the vectors that previously existed on that line will be scaled.
+
+The eigenvalues of $A$ are the zeroes of this polynomial (which is the characteristic equation of $A$). The same eigenvalue may occur more than once; the \textit{multiplicity} of an eigenvalue is the number of times the eigenvalue appears as a root. Each eigenvalue $\lambda$ with multiplicity $m$ has a set of up to $m$ linearly independent eigenvectors; the span of this set of eigenvectors is called an \textit{eigenspace}. Every vector in that eigenspace is an eigenvector for $\lambda$.
+
+	An eigenvalue with multiplicity $1$ is sometimes called \textit{simple}.
+
+Eigenvalues can be substituted back into the eigenvalue equation $(A-\lambda I)$ to solve for the values of $x_{1}, x_{2}, \ldots x_{n}$ in the corresponding $n \times 1$ eigenvector.
+
+If $A$ is an $n \times n$ matrix with only real numbers and if $\lambda_{1} = a + bi$ is an eigenvalue with eigenvector $\vec{v}^{1}$ Then $\lambda_{2} = \overline{\lambda_{1}} = a - bi$ is also an eigenvalue and its eigenvector is the conjugate of $\vec{v}^{1}$.
+
+The characteristic equation of an $n \times n$ matrix $A$ will not have more than $n$ roots, so $A$ will have no more than $n$ eigenvalues and no more than $n$ eigenvectors. (These eigenvalues and eigenvectors can be duplicates).
+
+\subsection{Matrix Diagonalization}
+
+The relationship between an $n \times n$ matrix $A$, its eigenvalues, and its eigenvectors can be written:
+
+$$\begin{matrix}
+A\vec{v}_{1}&=&\lambda_{1}\vec{v}_{1}\\
+A\vec{v}_{2}&=&\lambda_{2}\vec{v}_{2}\\
+& \vdots &\\
+A\vec{v}_{n}&=&\lambda_{n}\vec{v}_{n}\\
+\end{matrix}$$
+
+or equivalently in matrix form
+$$A
+\begin{bmatrix} \vec{v}_{1} & \vec{v}_{2} & \cdots & \vec{v}_{n} \end{bmatrix}
+=
+\begin{bmatrix} \lambda_{1}\vec{v}_{1} & \lambda_{2}\vec{v}_{2} & \cdots & \lambda_{n}\vec{v}_{n} \end{bmatrix}
+=
+\begin{bmatrix} \vec{v}_{1} & \vec{v}_{2} & \cdots & \vec{v}_{n} \end{bmatrix}
+\begin{bmatrix}
+\lambda_{1} & 0           & \cdots & 0          \\
+0           & \lambda_{2} & \cdots & 0          \\
+\vdots      & \vdots      & \ddots & \vdots     \\
+0           & 0           & \cdots & \lambda_{n}\\
+\end{bmatrix}$$
+Letting $P$ be the matrix of eigenvalues and $D$ be the matrix of eigenvectors, we can rewrite the above equation as $$A = PDP^{-1}$$
+By raising both sides of this equation to some power arbitrary power $m$ and canceling values of $P$ and $P^{-1}$, we see $$A^{m} = PD^{m}P^{-1}$$
+
+It should be noted that there are other possible values of $P$ and $D$. However, this algorithm ensures that $D$ is diagonal, so we can exploit the fact that $$D^{m} =
+\begin{bmatrix}
+\lambda_{1}^{m} & 0               & \cdots & 0              \\
+0               & \lambda_{2}^{m} & \cdots & 0              \\
+\vdots          & \vdots          & \ddots & \vdots         \\
+0               & 0               & \cdots & \lambda_{n}^{m}\\
+\end{bmatrix}$$
+
+to find values for $\sin{D}$, $e^{D}$, and other functions that can be expressed via power series (and therefore calculate $\sin{A}$, $e^{A}$, etc).
+
+\subsection{Dominant Eigenvectors}
+
+% https://www.dhruvonmath.com/2020/07/26/who-cares-about-eigenvectors/
+
+An eigenvector is said to be \textit{dominant} if its eigenvalue is greater than the eigenvalues of the other eigenvectors.
+
+Consider a diagonalizable matrix $A$ with real-valued eigenvectors. Repeatedly multiplying a vector $v$ by $A$ will tend to "pull" the product vectors towards $A$'s dominant eigenvector. This happens because the product vector can be expressed as a linear combination of $A$'s eigenvectors, and the dominant eigenvector will be increased the most (and therefore will grow faster and hold more weight in the final linear combination than the other eigenvectors).
+
+\pagebreak
+
+
+
+
+\section{Calculus on $\R$}
+
+\subsection{Neighborhoods and Limit Points}
+
+For all $a \in \C$, the $\mathbf{\varepsilon}$\textbf{-neighborhood} of $a$ is the set $V_\varepsilon(a)= \setbuild{x \in \C}{\dist(a, x) < \varepsilon}$. When restricting our attention to only the reals, the equivalent notion is the interval $V_\varepsilon(a) = (a-\epsilon, a+\epsilon)$.
+
+\subsection{$(\varepsilon, N)$ Definition of a Limit for Sequences}
+
+A sequence $(s_n)$ of real numbers is said to \textit{converge} to a real number $s$ if for each $\epsilon > 0$ there exists a number $N \in \mathbb{N}$ such that $n > \delta$ implies $|s_{n} - s| < \epsilon$. In such a case, we say that $s$ is the \textbf{limit} of $(s_n)$, or that $(s_n)$ \textit{converges} to $s$. If the above does not hold for \textit{any} $s$, we say that the limit does not exist and $(s_n)$ diverges.
+
+This condition means that a sequence will eventually get \textit{arbitrarily} (within $\varepsilon$) close to the limit $s$ and stay there, granted we go out far enough (go to at least the $N^{th}$ entry in the sequence).
+
+\subsection{($\varepsilon$, $\delta$) Definition of a Limit for Functions}
+
+Let $f$ be a real-valued function defined on a subset $D$ of $\mathbb{R}$, $c$ be a limit point of $D$, and $L$ be a real number. We say that $\lim_{x \to c} = L$ if for every $\varepsilon > 0$ there exists a $\delta > 0$ such that for all $x \in D$, if $0 < |x - c| < \delta$, then $|f(x) - L| < \varepsilon$. In such a case, we say that $L$ is the \textbf{limit} of $f$ as $x$ approaches $c$. If the above does not hold for \textit{any} $L$, we say that the limit of $f$ as it approaches $c$ does not exist.
+
+Essentially, this says that if we want to put some arbitrary bound on the input space (distance from $c$) -- say, $\delta$ -- then we can always find a corresponding bound on the input space (distance from $L$), $\varepsilon$.
+
+Some authors write $\delta(\varepsilon)$ because the value of $\epsilon$ typically determines the value of $\delta$; $\varepsilon-\delta$ proofs typically establish the existence of a $\delta$ in terms of $\varepsilon$. Intuitively, this makes sense -- if we say $\varepsilon$ (the bound on the output space) is very small, then we'll typically require $\delta$ (the bound on the input space) to be very small as well.
+
+\subsubsection{Continuity}
+
+We say that a function $f : \R \to \R$ is \textbf{continuous} at the point $c \in \dom(f)$ if for every $\varepsilon > 0$ there exists a $\delta > 0$ such that, for all $x \in D$, if $0 < |x - c| < \delta$ then $|f(x) - f(c)| < \varepsilon$. More compactly, if $$\lim_{x \to c} f(x) = f(c)$$ In other words function is continuous if changing the input by some bounded amount (the distance from $c$ to $x$ is less than $\delta$) means that we can put a related bound on how much the output changes (it won't increase or decrease by more than $\epsilon$). Essentially, changing the input to a function produces \textit{proportionate} (i.e. bounded) change in the output of that function -- varying the function's input by a ``small'' amount won't lead to unpredictable, explosive changes.
+
+Continuous functions look like continuous lines, even if these lines can look jagged, rough, or unwieldy.
+
+\begin{multicols}{2}
+
+\subsection{Quotient Rule}
+
+$$f'(x) = \displaystyle{\frac{g'(x)h(x) - g(x)h'(x)}{h(x)^{2}}}$$
+
+\subsection{Integration by Parts}
+
+$$ \int udv = uv - \int vdu $$
+
+Functions that get ``simpler'' when differentiated are good choices for $u$, while functions that get ``simpler'' when integrated are good choices for $dv$.
+
+\subsection{Trigonometric Substitution}
+
+\begin{center}
+
+\begin{tabular}{c|c}
+
+$a^{2} - x^{2}$ & $x=a\sin{\theta}$\\ \hline
+
+$a^{2} + x^{2}$ & $x=a\tan{\theta}$\\ \hline
+
+$x^{2} - a^{2}$ & $x=a\sec{\theta}$
+
+\end{tabular}
+
+\end{center}
+
+\end{multicols}
+
+\subsection{Trigonometric Integrals}
+
+$\displaystyle{\int \sin^{m}{x}\cos^{n}{x}}$ $m$ or $n$ odd? $\rightarrow$ split off a factor of that function. If both functions are even $\rightarrow$ half-angle identities
+
+\begin{align*}
+\displaystyle{\int \sin^{n}{x}dx} =& \displaystyle{-\frac{\sin^{n-1}{x}\cos{x}}{n} + \frac{n-1}{n}\int \sin^{n-2}{x}dx}\\
+\displaystyle{\int \cos^{n}{x}dx} =& \displaystyle{\frac{\cos^{n-1}{x}\sin{x}}{n} + \frac{n-1}{n}\int \cos^{n-2}{x}dx}\\
+\displaystyle{\int \tan^{n}{x}dx} =& \displaystyle{\frac{\tan^{n-1}{x}}{n-1} - \frac{n-2}{n-1}\int \tan^{n-2}{x}dx}\\
+\displaystyle{\int \sec^{n}{x}dx} =& \displaystyle{\frac{\sec^{n-2}{x}\tan{x}}{n-1} + \frac{n-2}{n-1}\int \sec^{n-2}{x}dx}
+\end{align*}
+
+
+$\displaystyle{\int \tan^{m}{x}\sec^{n}{x}dx = -\frac{\sin^{n-1}{x}\cos{x}}{n} + \frac{n-1}{n}\int \sin^{n-2}{x}dx}$
+
+$n$ even? $\rightarrow$ split off $\sec^{2}{x} = 1 + \tan^{2}{x}$
+
+$m$ odd? $\rightarrow$ split off $\sec{x}\tan{x}$, rewrite using $\tan^{2}{x} = \sec^{2}{x} - 1$
+
+Neither? $\rightarrow$ rewrite $1 + \tan^{2}{x} = \sec^{2}{x}$ and use redux form
+
+\subsection{Table of Integrals}
+
+\begin{center}
+
+\begin{tabular}{l|r}
+
+$\displaystyle{\int} f(x)dx$                          & $F(x)$          \\ \hline
+
+$\displaystyle{\int} \frac{1}{x}dx$                   & $\ln{|x|}   + C$\\ \hline
+
+$\displaystyle{\int} a^{x}dx$                         & $\frac{a^{x}}{\ln{a}} + C$   \\ \hline
+
+$\displaystyle{\int} \cosh{x} dx$                     & $\sinh{x} + C$  \\ \hline
+
+$\displaystyle{\int} \sinh{x} dx$                     & $\cosh{x} + C$  \\ \hline
+
+$\displaystyle{\int} \sech^{2}{x} dx$                 & $\tanh{x} + C$  \\ \hline
+
+$\displaystyle{\int} -\coth{x}\csch{x} dx$            & $\csch{x} + C$  \\ \hline
+
+$\displaystyle{\int} -\sech{x}\tanh{x} dx$            & $\sech{x} + C$  \\ \hline
+
+$\displaystyle{\int} -\csch^2{}{x} dx$                & $\coth{x} + C$  \\ \hline
+
+$\displaystyle{\int} \frac{1}{\sqrt{1-x^{2}}} dx$     & $\arcsin{x} + C$\\ \hline
+
+$\displaystyle{\int} -\frac{1}{\sqrt{1-x^{2}}} dx$    & $\arccos{x} + C$\\ \hline
+
+$\displaystyle{\int} \frac{1}{1+x^{2}} dx$            & $\arctan{x} + C$\\ \hline
+
+$\displaystyle{\int} -\frac{1}{x\sqrt{x^{2}-1}} dx$   & $\arccsc{x} + C$\\ \hline
+
+$\displaystyle{\int} \frac{1}{x\sqrt{x^{2}-1}} dx$    & $\arcsec{x} + C$\\ \hline
+
+$\displaystyle{\int} -\frac{1}{1+x^{2}} dx$           & $\arccot{x} + C$\\ \hline
+
+$\displaystyle{\int} \frac{1}{\sqrt{1+x^{2}}}$        & $\arcsinh{x} + C$\\ \hline
+
+$\displaystyle{\int} \frac{1}{\sqrt{x^{2}-1}} dx$     & $\arccosh{x} + C$\\ \hline
+
+$\displaystyle{\int} \frac{1}{1-x^{2}} dx$            & $\arctanh{x} + C$\\ \hline
+
+$\displaystyle{\int} -\frac{1}{|x|\sqrt{1-x^{2}}} dx$ & $\arccsch{x} + C$\\ \hline
+
+$\displaystyle{\int} -\frac{1}{x\sqrt{1-x^{2}}} dx$   & $\arcsech{x} + C$\\ \hline
+
+$\displaystyle{\int} \frac{1}{1-x^{2}} dx$            & $\arccoth{x} + C$\\ \hline
+
+$\displaystyle{\int} \frac{1}{\sqrt{a^{2} - x^{2}}} dx$ & $\arcsin{\frac{x}{a}} + C$ \\ \hline
+
+$\displaystyle{\int} \frac{1}{a^{2} + x^{2}} dx$      & $ \frac{1}{a}\arctan{\frac{x}{a}} + C$ \\ \hline
+$\displaystyle{\int} \frac{1}{x(\sqrt{a^{2} - x^{2}})} dx$ & $ \frac{1}{a}\arcsec{\frac{x}{a}} + C$ \\ \hline % 18
+
+
+\end{tabular}
+
+\end{center}
+
+% https://tutorial.math.lamar.edu/Classes/CalcII/CalcII.aspx
+
+\subsection{Arc Length}
+
+The length of a curve from $a$ to $b$ is given by $\displaystyle{\int_{a}^{b}} \sqrt{1 + f'(x)^{2}}dx$.
+
+\subsection{Volumes of Solids of Revolution}
+
+\begin{tabular}{c|c|c|c|c}
+
+& about $x$-axis & about $y$-axis & about $x$-axis (two curves) & about $y$-axis (two curves)\\ \hline
+Disk/Washer Method & $\pi \displaystyle{\int_{a}^{b}} f(x)^{2} dx$ & $\pi \displaystyle{\int_{a}^{b}} h(y)^{2} dy$ & $\pi \displaystyle{\int_{a}^{b}} \big{(}f(x)^{2} - g(x)^{2}\big{)} dx$ & $\pi \displaystyle{\int_{a}^{b}} \big{(}h(y)^{2} - j(y)^{2}\big{)} dy$ \\ \hline
+Shell Method & $2\pi \displaystyle{\int_{a}^{b}} yh(y) dy$ & $2\pi \displaystyle{\int_{a}^{b}} xf(x) dx$ & $2\pi \displaystyle{\int_{a}^{b}} y\big{(}h(y) - j(y)\big{)} dy$ & $2\pi \displaystyle{\int_{a}^{b}} x\big{(}f(x) - g(x)\big{)} dx$
+
+\end{tabular} where $h(y) = f^{-1}(x)$, $j(y) = g^{-1}(x)$
+
+
+\subsection{Surface Areas of Solids of Revolution}
+
+For rotations about the $x$-axis: $\displaystyle\int_{a}^{b} \sqrt{1+ \Big{(}\dfrac{dy}{dx}\Big{)}^2} dx$
+
+For rotations about the $y$-axis: $\displaystyle\int_{c}^{d} \sqrt{1+ \Big{(}\dfrac{dx}{dy}\Big{)}^2} dy$
+
+
+\subsection{Convergence Tests}
+
+Comparison Test:
+
+Ratio Test:
+
+Root Test:
+
+Integral Test:
+
+\subsection{Values of Infinite Sums}
+
+We assign values to infinite sums if the sequence of partial sums converges.
+
+$\displaystyle{\sum^{\infty}_{n=1} ar^{k} = \frac{a}{1-r}}$ for $|r| < 1$
+
+\section{Calculus on $\C$}
+When we speak about regions in the complex plane, we'll reference the $\epsilon$ neighborhood $$|z - z_0| < \epsilon$$ of a given point $z_0$. It consists of all the points lying inside but not on the circle centered at $z_0$ with radius $\epsilon$. Sometimes we also speak of a deleted neighborhood, $$0 < |z - z_0| < \epsilon$$ containing all points withing the $\epsilon$ neighborhood except $z_0$ itself.
+
+A point $z_0$ is said to be an interior point of a set $S$ whenever there is some neighborhood of $z_0$ that contains only points of $S$; it is called an exterior point of $S$ when there exists a neighborhood of it containing no points in $S$. If $z_0$ is neither of these, it is a boundary point of $S$. A set is open if it does not contain any of its boundary points, and a set is closed if it contains all of its boundary points, and the closure of a set $S$ is the closed set consisting of all points in $S$ together with the boundary of $S$. $|z| < 1$ is open, and $|z| \leq 1$ is its closure. The punctured disk $0 < \leq |z| \leq 1$ is neither open nor closed. $\C$ on the other hand is both open and closed because it has no boundary points.
+
+An open set is called connected if each pair of points $z_1$ and $z_2$ in it can be joined by a polygonal line consisting of a finite number of line segments, joined end to end, that lies entirely on $S$. A nonempty open set that is connected is called a domain. Any neighborhood is a domain. A domain with some, none, or all of its boundary points is usually referred to as a region. A set $S$ is bounded if every point in $S$ lies inside some circle $|z| = R$; otherwise, it is unbounded.
+
+A function $f$ defined on a set $S$ of complex numbers is a rule that assigns ever $z \in S$ a complex number $w$ so $f(z) = w$. The set $S$ is called the domain of definition of $f$, and does not need to be a domain as outlined above (although domains of definition typically are domains).
+
+If for each positive real number $\epsilon$, there is a positive real number $\delta$ such that $|f(z) - w_0| < \epsilon$ whenever $0 < |z - z_0| < \delta$, then we write $$\lim_{z \to z_0} f(z) = w_0$$ This definition says that for each $\epsilon$ neighborhood $|w - w_0| < \epsilon$ of $w_0$, there is a deleted $\delta$ neighborhood $0 < |z - z_0| < \delta$ of $z_0$ such that every point $z$ in that nieghborhood has an image lying in the $\epsilon$ neighborhood. Even though all points in the $\delta$ neighborhood are to be considered, their images need not fill the entire $\epsilon$ neighborhood.
+
+The derivative of a complex function $f$ at $z_0$ is the limit $$f'(z_0) = \lim_{z \to z_0} \frac{f(z) - f(z_0)}{z - z_0}$$ If this limit exists, the function is said to be differentiable at $z_0$. The constant, sum, product, quotient, and chain rules from real analysis all apply; the power rule $$\frac{d}{dz} z^n = nz^{n-1}$$ holds for nonzero integers $n$.
+
+\textbf{Cauchy-Riemann Equations}
+
+Suppose that $f(z) = u(x,y) + iv(x,y)$ and that $f'(z)$ exists at a point $z_0 = x_0 + iy_0$. Then the first-order partial derivatives of $u$ and $v$ must exist at $(x_0, y_0)$ and they must satisfy the Cauchy-Riemann equations $$\begin{array}{ccr}
+	u_x(x_0,y_0) &=& v_y(x_0,y_0)\\
+	u_y(x_0,y_0) &=& -v_x(x_0,y_0)
+\end{array}$$ Furthermore, $f'(z_0) = u_x + iv_x$ where these partial derivatives are to be evaluated at $(x_0, y_0)$. Satisfaction of the Cauchy-Riemann equations at $z_0$ are necessary but not sufficient to ensure that the derivative of $f$ exists at $z_0$.
+
+However, we do have (p. 66)
+
+\textbf{Analytic Functions}
+
+A function $f$ of a complex variable $z$ is \textbf{analytic} (also called \textbf{regular} or \textbf{holomorphic}) on an open set $S$ if it has a derivative everywhere in $S$. It is analytic at a point $z_0$ if it is analytic in some neighborhood of $z_0$. An \textbf{entire function} is a function that is analytic at each point in the entire complex plane.
+
+Let $f$ and $g$ be analytic functions. Then the following gold
+
+\Thrm{Properties of Analytic Functions} Let $f = u + iv$ and $g$ be analytic on a domain $D$. Then the following hold: \begin{itemize}
+	\item $f(g(z))$, $f(z) + g(z)$, and $f(z)g(z)$ are analytic. $f(z)/g(z)$ is analytic wherever $g(z) \neq 0$
+	\item All derivatives of $f$ exist and are also analytic on $D$
+	\item All partial derivatives of $u$ and $d$ exist and are continuous on $D$
+	\item If $f$ is analytic on the disk $|z - z_0| < R$, then the Taylor series of $f$ converges to $f(z)$ for all $z$ in the disk. Furthermore, the Taylor series converges uniformly in any closed subdisk $|z - z_0| \leq R' < R$
+	\item If $f$ is nonconstant, its range is an open set
+	\item $f$ is analytic at $z_0$ and $f'(z_0) \neq 0$, there is some open disk centered at $z_0$ on which $f$ is one-to-one
+	\item $f$ is conformal at every point $z_0$ for which $f'(z_0) \neq 0$
+\end{itemize}
+
+
+If $f'(z) = 0$ everywhere on a domain $D$, then $f(z)$ must be constant on $D$.
+
+If a function $f(z) = u(x,y) + iv(x,y)$ is analytic in a domain $D$, then its component functions $u$ and $v$ are harmonic (satisfy Laplace's equation) in $D$.
+
+
+
+
+
+
+
+\section{Calculus on $\R^n$}
+
+\subsection{Directional Derivatives}
+
+$\hat{i} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \hat{j} = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \hat{k} = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$
+
+$D_{\hat{u}} f(x,y) = u_{1} \times f_{x} + u_{2} \times f_{y}$
+
+
+
+\subsection{Proof of Symmetry of Mixed Partials}
+
+\textbf{Theorem: Equality of Mixed Partials}
+
+If the partial derivatives $\frac{\partial^{2} f}{\partial x \partial y}$ and $\frac{\partial^{2} f}{\partial y \partial x}$ exist and are continuous at $(x_{0}, y_{0})$, then $\frac{\partial^{2} f}{\partial x \partial y}(x_{0}, y_{0}) = \frac{\partial^{2} f}{\partial y \partial x}(x_{0}, y_{0})$.
+
+\pagebreak
+
+
+
+
+
+\section{Ordinary Differential Equations}
+
+\begin{multicols}{2}
+
+\subsection{Separation of Variables}
+
+\begin{center}
+
+$\displaystyle{\frac{dx}{dt}} = p(x)q(t) \rightarrow \displaystyle{\int \frac{1}{p(x)} dx} = \displaystyle{\int q(t)dt}$
+
+\end{center}
+
+\subsection{Newton's Law of Cooling}
+
+\begin{center}
+
+$\displaystyle{\frac{dT}{dt}} = -k(T-T_{a})$
+
+\end{center}
+
+\end{multicols}
+
+\subsection{Linear Differential Equations}
+
+$\frac{dx}{dt} + p(t)x = q(t)$
+
+Multiply by an integrating factor $I(t) = \displaystyle{e^{\int{p(t)}dt}}$
+
+Multiply $I(t)\displaystyle{\frac{dx}{dt} + I(t)p(t)x = I(t)q(t)}$
+
+Rewrite $\displaystyle{\frac{dx}{dt} \Big( I(t) \Big) } = I(t)q(t)$
+
+Integrate and solve!
+
+\subsection{Second-Order Homogeneous Differential Equations}
+
+Unique roots? $\rightarrow$ Solvable by characteristic polynomial
+
+Double root? $\rightarrow$ $e^{rt}$ and $te^{rt}$ are solutions
+
+Complex roots $(r_{1}=a+bi$ and $r_{2}=a-bi)$? $\rightarrow$ $e^{(r_{1})t}$ and $e^{(r_{1})t}$ (equivalently $e^{at}(c_{1}\cos{bt} + c_{2}\sin{bt})$) are solutions
+
+Two real roots $\rightarrow$ overdamped
+
+Two complex roots $\rightarrow$ underdamped
+
+Real double root $\rightarrow$ critically damped
+
+The solution set of a homogeneous linear differential equation forms a vector space.
+
+\subsection{Second-Order Non-Homogeneous Differential Equations}
+
+$ay'' + b y' + c = f(t) + g(t) + \cdots$
+
+Guess $y=k_{1}f(t)$, $y=k_{2}g(t)$, and so on for each function.
+
+Solve for each constant $k_{1}, k_{2},$ etc.
+
+General solution = homogeneous solutions + particular solutions.
+
+The solution set of a non-homogeneous differential equation does not form a vector space because the zero vector is not a solution.
+
+\subsection{Resonant Cases}
+
+A resonant case occurs when one term of the homogeneous solution is equal to the particular solution for some function $f(t)$. This can be resolved by guessing $y = k_{1}tf(t)$; for a critically damped resonant case, guess $y = k_{1}t^{2}f(t)$.
+
+\subsection{Laplace Transform}
+
+The Laplace transform is defined as $$\mathscr{L}\{f(t)\} = \int_{0}^{\infty}  f(t)e^{-st} dt = F(s)$$.
+
+The Laplace transform is useful for solving differential equations because $\mathscr{L}\{f'(t)\} = sF(s) - f(0)$. By performing the Laplace transform, $f$ and its derivatives can be put in terms of the single function $F(s)$. Solving this function and performing the inverse Laplace transform will yield the solution for the differential equation.
+
+$$\mathscr{L}\{f^{(n)}(t)\} = s^{n}F(s) - s^{n-1}f(0) - s^{n-2}f^{(1)}(0) - \cdots - sf^{(n-2)} - f^{(n-1)}(0)$$
+
+$$\frac{d}{dt}F(s) = -\mathscr{L}\{tf'(t)\}$$
+
+\subsection{Shifting Theorems}
+
+$$ \mathscr{L}\{ e^{at}f(t) \} = F(s-a)$$
+
+$$ \mathscr{L}\{ \delta(t - a)f(t-a) \} = e^{-as}F(s)$$
+
+\subsection{Table of Laplace Transforms}
+
+\begin{center}
+
+	\begin{tabular}{c|c|c}
+		$f(x)$      & $F(s)$                                   & Restriction \\ \hline
+		$t^{n}$     & $\displaystyle{\frac{n!}{s^{n+1}}}$      &             \\ \hline
+		$\sin{at}$  & $\displaystyle{\frac{a}{s^{2} + a^{2}}}$ & $s > 0$     \\ \hline
+		$e^{at}$    & $\displaystyle{\frac{1}{s - a}}$         & $s > a$     \\ \hline
+		$\sin{at}$  & $\displaystyle{\frac{a}{s^{2} + a^{2}}}$ & $s > 0$     \\ \hline
+		$\cos{at}$  & $\displaystyle{\frac{s}{s^{2} + a^{2}}}$ & $s > 0$     \\ \hline
+		$\sinh{at}$ & $\displaystyle{\frac{a}{s^{2} - a^{2}}}$ & $s > |a|$   \\ \hline
+		$\cosh{at}$ & $\displaystyle{\frac{s}{s^{2} - a^{2}}}$ & $s > |a|$
+	\end{tabular}
+
+\end{center}
+
+\pagebreak
+
+\section{Partial Differential Equations}
+
+\subsection{Fourier Series}
+
+\section{Probability}
+
+\section{Proofs of Notable Theorems}
+
+\subsection{The Binomial Theorem}
+
+\subsection{The Fundamental Theorem of Arithmetic}
+
+\subsection{The Fundamental Theorem of Algebra}
+
+Every polynomial in $\C[x]$ has a root in $\C$. Equivalently, $\C$ is its own algebraic closure.
+
+\subsection{The Chain Rule}
+
+\subsection{L'Hôpital's Rule}
+
+\subsection{Existence and Uniqueness of Solutions to Ordinary Differential Equations}
+
+\subsection{The Cauchy-Riemann Equations}
+
+\subsection{Clairaut's Theorem}
+
+\subsection{Green's Theorem}
+
+\subsection{Stokes' Theorem}
+
+\subsection{Lagrange's Theorem}
+
+\subsection{Abel-Ruffini}
+
+Insolubility of Quintics by Radicals
+
+\subsection{Rank-Nullity Theorem}
+
+\section{Derivations}
+
+\subsection{The Laplace Transform}
+
+	Consider a power series solution $A(x) = \sum_{n=0}^{\infty} a_nx^n$ to a differential equation.
+
+	Let $a_n$ be a discrete function $a(n) = a_n$ for $n \geq 0$. (For example, where $a(n) = \frac{1}{n!}$, $A(x) = e^x$.)
+
+	To make $A(x)$ continuous, we let $n = 0, 1, 2, \ldots \to 0 \leq t < \infty$ for $t \in \mathbb{R}$, $a(n) \to f(t)$, and $A(x) = \displaystyle{\int_{0}^{\infty} f(t)x^{t} dt}$
+
+	For convenience, we change $x^t = e^{(\ln{x})t}$
+
+	This integral typically fails to converge for $x > 1$ and has imaginary values for $x < 0$, so we limit $0 < x < 1$; then $\ln{x} < 0$.
+
+	We then let $-s := \ln{x}$, so $A(x) = A(e^{-s})$ and we see that $$A(x) = \displaystyle{\int_{0}^{\infty} f(t)e^{(\ln{x})t} dt} \to A(e^{-s}) = \displaystyle{\int_{0}^{\infty} f(t)e^{-st} dt} = \mathscr{L}\{f(t)\} = F(s)$$
+
+\subsection{The Fourier Transform}
+
+\subsection{The Fast Fourier Transform}
+
+\subsection{Undecidability of HALT}
+
+\subsection{Undecidability of Peano Arithmetic}
+
+\subsection{Baire Category Theorem}
+
+\section{Other Notable Objects and Functions}
+
+	\subsection{The Quaternions $\mathbb{H}$}
+
+	$\mathbb{H} = \{\pm 1, \pm i, \pm j, \pm k\}$ where
+
+	$$
+	1 = \begin{bmatrix}
+	1 & 0\\
+	0 & 1
+	\end{bmatrix},
+	i = \begin{bmatrix}
+	i & 0\\
+	0 & -i
+	\end{bmatrix},
+	j = \begin{bmatrix}
+	 0 & 1\\
+	-1 & 0
+	\end{bmatrix},
+	k = \begin{bmatrix}
+	0 & i\\
+	i & 0
+	\end{bmatrix}
+	$$
+
+	and
+
+	\begin{center}
+	\begin{tabular}{|c|c|c|c|c|}
+	\hline
+	$\times$ & $1$ & $i$  & $j$  & $k$ \\ \hline
+	$1$      & $1$ & $i$  & $j$  & $k$ \\ \hline
+	$i$      & $i$ & $-1$ & $k$  & $-j$\\ \hline
+	$j$      & $j$ & $-k$ & $-1$ & $i$ \\ \hline
+	$k$      & $k$ & $j$  & $-i$ & $-1$\\ \hline
+	\end{tabular}
+	\end{center}
+
+	\subsection{Everywhere-Continuous, Nowhere Differentiable Functions}
+
+	\subsection{Differentiation as a Linear Map}
+
+	Differentiation of an n-degree polynomial $a_{n}x^{n} + a_{n-1}x^{n-1} + \cdots + a_{1}x +a_{0}$ can be expressed by left multiplication of the associated polynomial vector by the matrix $$\begin{pmatrix}
+	0      & 1      & 0      & 0      & \cdots & 0      & 0     \\
+	0      & 0      & 2      & 0      & \cdots & 0      & 0     \\
+	0      & 0      & 0      & 3      & \cdots & 0      & 0     \\
+	0      & 0      & 0      & 0      & \cdots & 0      & 0     \\
+	\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots\\
+	0      & 0      & 0      & 0      & \cdots & 0      & n-1   \\
+	0      & 0      & 0      & 0      & \cdots & 0      & 0     \\
+	\end{pmatrix}
+	\begin{pmatrix}
+	a_{0}  \\
+	a_{1}  \\
+	a_{2}  \\
+	a_{3}  \\
+	\vdots \\
+	a_{n-1}\\
+	a_{n}
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	a_{1} \\
+	2a_{2}\\
+	3a_{3}\\
+	4a_{4}\\
+	\vdots\\
+	na_{n}\\
+	0
+	\end{pmatrix}
+	=
+	\frac{d}{dx}
+	\begin{pmatrix}
+	a_{0}  \\
+	a_{1}  \\
+	a_{2}  \\
+	a_{3}  \\
+	\vdots \\
+	a_{n-1}\\
+	a_{n}
+	\end{pmatrix}
+	$$
+
+	Differentiation of polynomials of an arbitrary degree can be expressed as left multiplication by the infinite-dimensional matrix $$\begin{pmatrix}
+	0      & 1      & 0      & 0      & \cdots\\
+	0      & 0      & 2      & 0      & \cdots\\
+	0      & 0      & 0      & 3      & \cdots\\
+	0      & 0      & 0      & 0      & \cdots\\
+	\vdots & \vdots & \vdots & \vdots & \ddots
+
+	\end{pmatrix}$$
+
+	\subsection{Functions with Non-elementary Antiderivatives}
+
+	A non-elementary antiderivative is an antiderivative with an infinite number of terms. The following elementary functions have non-elementary antiderivatives:
+
+	$e^{-\frac{x^{2}}{2}}$
+
+	$\frac{\sin{x}}{x}$
+
+	$\frac{1}{\ln{x}}$
+
+	\subsection{Sigmoid Function}
+
+	$$\sigma (x) = \displaystyle{\frac{1}{1+e^{-x}}}$$
+
+	\subsection{Pi and Gamma Functions}
+
+	$$\Pi(z) = \Gamma(z + 1) = z\Gamma(z) = \displaystyle{\int_{0}^{\infty}e^{-t}t^{z}dt} = z!$$
+
+	\subsection{Lambert W Function}
+
+	$W(x) = f^{-1}(x)$ where $f(x) = xe^{x}$ on the interval $[-1, \infty )$
+
+	$D:[\frac{-1}{e}, \infty), R:[-1, \infty )$
+
+	$W(xe^{x}) = x$ and $W(x)e^{W(x)} = x$
+
+	$$\text{Exponential Function: }\text{exp }x = \displaystyle{\sum_{n=0}^{\infty} \frac{x^{n}}{n!}}$$
+
+	$$\text{Sine Derivative Identity: }\frac{d^n y}{d x^n} \sin{x} = \sin{ \frac{n\pi}{2} - x} $$
+
+	\subsection{Lagrange Polynomial}
+
+	Given a set of points
+
+	where every value of $x_{n}$ is unique, the Lagrange polynomial will generate a polynomial that satisfies all of the given points.
+
+	\subsection{Newton Polynomial}
+
+	\subsection{Euler's Number}
+
+	$$e = \text{ exp } 1 = \displaystyle{\sum_{n=0}^{\infty} \frac{1}{n!} = \lim_{n\to\infty} (1+\frac{1}{n})^{n}}$$
+
+	$$e^{x} = \text{ exp } x = \displaystyle{\sum_{n=0}^{\infty} \frac{x^{n}}{n!}}$$
+
+	$$\displaystyle{\int_{1}^{e}\frac{1}{x}dx}=1$$
+
+	$$ce^{x} \text{ is the unique solution to the differential equation } y' = y$$
+
+	$$\frac{d}{dx} (log_{e}{x}) = \frac{1}{x}$$
+
+	\subsection{Extension of the Natural Log to the Negative Numbers}
+
+	$\ln{-x} = ln{-1 \cdot x} = \ln{-1} + \ln{x}$
+
+	$e^{i (\pi + 2 \pi m)} = -1 \therefore \ln{-1} = \pi + 2 \pi m$, $m \in \mathbb{Z}$
+
+	$\therefore \ln{-x} = \ln{x} \cdot \pi + 2 \pi m$, $m \in \mathbb{Z}$
+
+\end{document}

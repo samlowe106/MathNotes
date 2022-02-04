@@ -1,0 +1,41 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts} % \mathbb
+\usepackage{mathtools}
+\usepackage{latexsym}
+\usepackage{amssymb} % therefore
+\usepackage{hyperref} % allows hyperlinks, including in the table of contents
+
+\title{Multivariable and Vector Calculus Notes}
+\author{Sam Lowe}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+
+A \textbf{Finite State Machine} or \textbf{Finite Automaton} is a 5-tuple $(Q, \Sigma, \delta, q_0, F)$ where \begin{itemize}
+    \item $Q$ is a finite set called the \textbf{states},
+    \item $\Sigma$ is a finite set called the \textbf{alphabet},
+    \item $\delta : Q \times \Sigma \to Q$ is the \textbf{transition function},
+    \item $q_0 \in Q$ is the \textbf{start state}, and
+    \item $F \subseteq Q$ is the set of \textbf{accept states} (also known as \textbf{final states})
+\end{itemize}
+
+If $A$ is the set of all strings that $M$ accepts, we say that $A$ is the \textbf{language of machine} $M$ and denote it $L(M)=A$. We say that $M$ \textbf{accepts} $A$ or $M$ \textbf{recognizes} $A$ (we prefer the latter term to avoid confusion when referring to strings and languages). Machines may accept many strings, but recognize only one language.
+
+A language is called a \textbf{regular language} if some finite automaton recognizes it.
+
+Let $A$ and $B$ be languages. We define the regular operations union, concatenation, and star as follows: \begin{itemize}
+    \item \textbf{Union}: $A \cup B = \{ x \, | \, x \in A \text{ or } x \in B \}$
+    \item \textbf{Concatenation}: $A \circ B = \{ xy \, | \, x \in A \text{ and } x \in B \}$
+    \item \textbf{Star}: $A^* = \{ x_1x_2\ldots x_k \, | \, k \geq 0 \text{ and each } x_k \in A \}$ 
+\end{itemize}
+
+
+
+\end{document}

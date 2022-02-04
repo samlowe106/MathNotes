@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}    % \mathbb
+\usepackage{amssymb}     %
+\usepackage{amsthm}
+\usepackage{esint}       % cyclic integrals
+\usepackage{mathtools}
+\usepackage{mathrsfs}    % \mathscr
+\usepackage{latexsym}
+\usepackage{hyperref}    % allows hyperlinks, including in the table of contents
+\usepackage{imakeidx}
+\usepackage{verbatim}    % begin{comment}
+\usepackage{ulem}        %\uline, which allows linebreaks
+\usepackage{fancyhdr}    % \cfoot
+\usepackage{xcolor}      % color
+%\usepackage[document]{ragged2e} % left justifies text
+
+\cfoot{\thepage}
+\setlength{\parindent}{0in}
+\setlength{\parskip}{1em}
+
+\newtheorem{theorem}{Theorem}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{example}{Example}[section]
+
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\Curl}{curl}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\E}{E}
+\DeclareMathOperator{\Var}{var}
+\DeclareMathOperator{\Cov}{cov}
+\DeclareMathOperator{\Corr}{corr}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\id}{id}
+
+% Trig Functions
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arccsc}{arccsc}
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arccsch}
+\DeclareMathOperator{\arccoth}{arccoth}
+
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+
+\newcommand{\Laplace}[1]{\ensuremath{\mathscr{L}\left[ #1 \right]}}
+\newcommand{\LaplaceInv}[1]{\ensuremath{\mathscr{L}^{-1}\left[ #1 \right]}}
+\newcommand{\Fourier}[1]{\ensuremath{\mathcal{F}\left[ #1 \right]}}
+\newcommand{\FourierInv}[1]{\ensuremath{\mathcal{F}^{-1}\left[ #1 \right]}}
+
+\newcommand{\Lemma}{\textbf{Lemma }}
+\newcommand{\Thrm}[1]{\textbf{Theorem (#1) }}
+\newcommand{\Def}[1]{\textbf{Definition (#1) }}
+\newcommand{\Example}{\textbf{Example }}
+
+\newcommand{\todo}{\color{red}\textbf{TODO }\color{black}}
+\newcommand{\sorry}{\color{red}\textbf{sorry }\color{black}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Felipe Portales' HomeWorks
+% Maintainer: Felipe Portales-Oliva (f.portales.oliva@gmail.com)
+%
+% Document class to produce simple yet stylish homework submissions
+%
+% This package is public domain, according to :
+%    The Unlicense <https://unlicense.org>
+
+
+% CERTAIN CHANGES HAVE BEEN MADE TO SPECIALIZE THIS DOCUMENT CLASS TO
+% A COMPUTER SCIENCE CONTEXT (HENRY BURTIS, MAY 2021)
+
+\newcommand{\set}[1]{\ensuremath{\left\lbrace  #1 \right\rbrace}}
+\newcommand{\setbuild}[2]{\ensuremath{\left\lbrace  #1 \;\middle|\; #2 \right\rbrace}}
+\newcommand{\powset}[1]{\ensuremath{\mathcal{P}}(#1)}
+\newcommand{\func}[3]{\ensuremath{#1 \;:\; #2 \rightarrow #3}}
+
+\begin{comment}
+\title{Template}
+\author{Sam Lowe}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\pagebreak
+
+\section{Section 1}
+
+Content goes here.
+
+\end{document}
+\end{comment}

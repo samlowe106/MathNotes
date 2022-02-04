@@ -1,0 +1,65 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{esint} % cyclic integrals
+\usepackage{amsfonts} % \mathbb
+\usepackage{mathtools}
+\usepackage{latexsym}
+\usepackage{amssymb} % therefore
+\usepackage{hyperref} % allows hyperlinks, including in the table of contents
+\usepackage{amsthm}
+%\usepackage[document]{ragged2e} % left justifies text
+
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Curl}{Curl}
+
+\DeclareMathOperator{\dom}{dom}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+
+\begin{document}
+
+\textbf{0.1.2} A polynomial $f \in \F[x]$ has no repeated roots iff it is relatively prime to its derivative.
+
+\textbf{0.1.4} \begin{itemize}
+
+    \item Dirichlet convolution is associative
+    
+    \textbf{Proof} Let $n=ab$ $$\begin{aligned}
+        \big(f * (g * h) \big)(n)&= \sum_{d_1(d_4) = n} f(d_1) \left[\sum_{d_2d_3 = d_4} g(d_2)h(d_3)\right]\\
+        &= \sum_{d_1(d_2d_3) = n} f(d_1)\left[g(d_2)h(d_3)\right]\\
+        &= \sum_{(d_1d_2)d_3 = n} \left[f(d_1)g(d_2)\right]h(d_3)\\
+        &= \sum_{d_5d_3 = n} \left[\sum_{d_1d_2 = d_5} f(d_1)g(d_2)\right]h(d_3)\\
+        &=\big((f*g)*h\big)(n)
+    \end{aligned}$$
+
+    \item Dirichlet convolution is commutative
+    
+    \textbf{Proof} $$\sum_{ab = n} f(a)g(b) = \sum_{ba = n} f(b)g(a) = \sum_{ba = n} g(a)f(b)$$
+
+    \item Dirichlet convolution has identity $I(n)$
+    
+    \textbf{Proof} Plugging it in: $$(f * I)(n) = \sum_{d \mid n} f(d)I\left(\frac{n}{d}\right) = f(n)1\left(\frac{n}{n}\right) = f(n)$$
+
+    
+
+
+    \item If $f(1) \neq 0$, then $f$ has an inverse under Dirichlet convolution.
+    
+    \textbf{Proof} If $f(1) \neq 0$, we want some $g$ such that $(f * g)(n) = I(n)$. Assume $f(1) \neq 0$, then we construct the function $g(1)= \frac{1}{f(1)}$ if $n = 1$. For our base case, we have $(f * g)(1) = \frac{f(1)}{f(1)} = 1$, which agrees with $I(1)$. We also know that for $n > 1$, $$(f * g)(n) = \sum_{d \mid n} f(d)g\left(\frac{n}{d}\right) = I(n) = 0$$ so $$\begin{aligned} f(1)g(n) + & \sum_{d > 1 \mid n} f(d)g\left(\frac{n}{d}\right) = 0\\
+        g(n) + & \frac{1}{f(1)} \sum_{d > 1 \mid n} f(d)g\left(\frac{n}{d}\right) = 0\\
+    g(n) =& -\frac{1}{f(1)} \sum_{d > 1 \mid n} f(d)g\left(\frac{n}{d}\right)\end{aligned}$$
+
+    Now assume $f(1) = 0$; then clearly for any $g$ we have $(f * g)(1) = f(1)g(1) = 0$ so $(f * g)(n)$ necessarily disagrees with $I(n)$.
+\end{itemize}
+
+
+
+
+
+
+\end{document}
